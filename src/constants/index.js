@@ -1,0 +1,7 @@
+export const GET_USERS = 'GET_USERS';
+export const FETCHING_USERS = 'FETCHING_USERS';
+
+export const ADD_NEW_USER = 'ADD_NEW_USER';
+
+export const GET_POSITIONS = 'GET_POSITIONS';
+export const FETCHING_POSITIONS = 'FETCHING_POSITIONS';
