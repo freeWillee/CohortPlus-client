@@ -39,7 +39,34 @@ export const createNewUser = (formData, ownProps) => {
               } else {
                 throw Error(`Request rejected with the following message ${resp.status}`);
               }
-              ownProps.history.push('/users');
+            //   ownProps.history.push('/users');
+        })
+        .catch(err => {
+            console.log('[CREATE_USER_ERROR]: ', err)
+        })
+    }
+}
+
+export const editUser = (formData, ownProps) => {
+    return dispatch => {
+        fetch(
+            `http://localhost:3001/api/v1/users/${formData.id}`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json'
+                },                
+                body: JSON.stringify(formData)
+            })
+        .then(resp => {
+            if(resp.ok) {
+                const users = resp
+                dispatch({
+                    type: actionTypes.GET_USERS,
+                    users
+                })
+              } else {
+                throw Error(`Request rejected with the following message ${resp.status}`);
+              }
         })
         .catch(err => {
             console.log('[CREATE_USER_ERROR]: ', err)
