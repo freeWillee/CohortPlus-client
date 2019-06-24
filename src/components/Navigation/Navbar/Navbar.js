@@ -1,0 +1,42 @@
+import React from 'react';
+import {NavLink} from 'react-router-dom';
+import classes from './Navbar.module.css';
+
+const Navbar = () => {
+    return (
+        <div>
+            <NavLink
+                to="/"
+                exact
+                className={classes.Link}
+                activeStyle={{
+                    background: 'darkblue'
+                }}
+            >
+                Home
+            </NavLink>
+            <NavLink
+                to="/users"
+                exact
+                className={classes.Link}
+                activeStyle={{
+                    background: 'darkblue'
+                }}
+            >
+                Team Members
+            </NavLink>
+            <NavLink
+                to="/users/new"
+                exact
+                className={classes.Link}
+                activeStyle={{
+                    background: 'darkblue'
+                }}
+            >
+                Add Team Member
+            </NavLink>
+        </div>
+    )
+}
+
+export default Navbar;
