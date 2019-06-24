@@ -1,7 +1,16 @@
+// USERS
 export const GET_USERS = 'GET_USERS';
 export const FETCHING_USERS = 'FETCHING_USERS';
-
 export const ADD_NEW_USER = 'ADD_NEW_USER';
 
+// POSITIONS
 export const GET_POSITIONS = 'GET_POSITIONS';
 export const FETCHING_POSITIONS = 'FETCHING_POSITIONS';
+
+// PROJECTS
+export const GET_PROJECTS = 'GET_PROJECTS';
+export const FETCHING_PROJECTS = 'FETCHING_PROJECTS';
+export const ADD_NEW_PROJECT = 'ADD_NEW_PROJECT';
+
+// TASKS
+export const ADD_NEW_TASK = 'ADD_NEW_TASK';

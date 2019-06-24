@@ -1,5 +1,14 @@
 export {
     getUsers,
     createNewUser,
-    getPositions
+    editUser,
+    getPositions,
 } from './users'
+
+export {
+    getProjects
+} from './projects'
+
+export {
+    createNewTask
+} from './tasks'
