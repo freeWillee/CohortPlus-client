@@ -14,3 +14,7 @@ export const ADD_NEW_PROJECT = 'ADD_NEW_PROJECT';
 
 // TASKS
 export const ADD_NEW_TASK = 'ADD_NEW_TASK';
+
+// SERVER
+export const TOGGLE_LOADING = 'TOGGLE_LOADING';
+export const TOGGLE_ERROR = 'TOGGLE_ERROR';
