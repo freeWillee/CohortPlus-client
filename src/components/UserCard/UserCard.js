@@ -78,9 +78,13 @@ class UserCard extends Component {
     }
 
     handleSubmitEditForm = () => {
-        const {editUser} = this.props
-        editUser(this.state.editUser)
-        this.handleCloseEdit()
+        if (Object.values({...this.state.editUser, id: ""}).join("") === "") {
+            alert(`You did not edit any fields. To exit, click "Cancel"`)
+        } else {
+            const {editUser} = this.props
+            editUser(this.state.editUser)
+            this.handleCloseEdit()
+        }        
     }
 
     render() {
