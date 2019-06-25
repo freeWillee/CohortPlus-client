@@ -7,6 +7,10 @@ import User from '../../components/UserCard/UserCard';
 import classes from './UsersIndex.module.css';
 
 class UsersIndex extends Component {
+    state = {
+        sortBy: "lastName",
+    }
+
     componentDidMount(){
         console.log('[UsersIndex - COMPONENT DID MOUNT]: ', )
         this.props.getUsers()
@@ -29,36 +33,61 @@ class UsersIndex extends Component {
     }
 
     // my sort function
-    sortUsers = usersArray => {
-        return usersArray.sort(function(a, b) {
-            let nameA = a.attributes.last_name.toUpperCase(); // ignore upper and lowercase
-            let nameB = b.attributes.last_name.toUpperCase(); // ignore upper and lowercase
+    sortUsers = (usersArray, userClickSort, findUserCb) => {
+        return usersArray.sort(function(a, b, sortBy=userClickSort, findUserCbFunc=user => findUserCb(user)) {
+            let nameA
+            let nameB
+
+            switch(sortBy) {
+                case "firstName":
+                    nameA = a.attributes.first_name.toUpperCase(); // ignore upper and lowercase
+                    nameB = b.attributes.first_name.toUpperCase(); // ignore upper and lowercase                    
+                    break
+                case "position":
+                    nameA = findUserCbFunc(a).toUpperCase(); // ignore upper and lowercase
+                    nameB = findUserCbFunc(b).toUpperCase(); // ignore upper and lowercase
+                    break
+                case "email":
+                    nameA = a.attributes.email.toUpperCase(); // ignore upper and lowercase
+                    nameB = b.attributes.email.toUpperCase(); // ignore upper and lowercase
+                    break
+                default:  // sort by last name
+                    nameA = a.attributes.last_name.toUpperCase(); // ignore upper and lowercase
+                    nameB = b.attributes.last_name.toUpperCase(); // ignore upper and lowercase
+                    break
+            }
+            
             if (nameA < nameB) {
-              return -1;
+                return -1;
             }
             if (nameA > nameB) {
-              return 1;
+                return 1;
             }              
             // names must be equal
             return 0;
-          });
+        });
+
+        
+    }
+
+    handleToggleSort = (e) => {
+        e.preventDefault()
+        console.log("i was clicked")
     }
 
     render() {
         let usersToRender
-        if (this.props.directory.length > 0) {
-            
-            // DEFAULT SORT BY LAST NAME --> TO BUILD OUT FUNCTIONALITY TO SORT BY TITLE
-            let usersToMap = this.sortUsers(this.props.directory)
+        if (this.props.directory.length > 0) {            
+            let usersToMap = this.sortUsers(this.props.directory, this.state.sortBy, this.findUserPosition)
             
             usersToRender = usersToMap.map(user=>{
                 const userPosition = this.findUserPosition(user)
-                return <User 
-                    key={user.id} 
-                    user={user}
-                    position={userPosition}
-                    editUser={(formData, ownProps) => this.props.editUser(formData, ownProps)}
-                />
+                return <User
+                        key={user.id} 
+                        user={user}
+                        position={userPosition}
+                        editUser={(formData, ownProps) => this.props.editUser(formData, ownProps)}
+                    /> 
             })
         }   
 
@@ -66,7 +95,7 @@ class UsersIndex extends Component {
             <div>
                 <h1 className={classes.Header}>Team Directory</h1>
                 <div className={classes.User}>
-                    {usersToRender}  
+                    {usersToRender}                    
                 </div>
             </div>
         )
