@@ -8,10 +8,17 @@ import classes from './UsersIndex.module.css';
 
 class UsersIndex extends Component {
     componentDidMount(){
+        console.log('[UsersIndex - COMPONENT DID MOUNT]: ', )
         this.props.getUsers()
         this.props.fetchPositions()
     }
+
+    shouldComponentUpdate(nextProps, nextState) {
+        console.log('[UsersIndex - shouldComponentUpdate]: ', 'nextProps: ', nextProps, 'nextState: ', nextState )
+        return true
+    }
     
+    // find a user's position
     findUserPosition = user => {
         const positionId = user.relationships.position.data.id
         if (this.props.positions.length > 0) {
