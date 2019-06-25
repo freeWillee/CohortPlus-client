@@ -30,11 +30,11 @@ export const createNewUser = (formData, ownProps) => {
             })
         .then(resp => {
             if(resp.ok) {
-                dispatch(getUsers())
+                ownProps.history.push('/users');
               } else {
                 throw Error(`Request rejected with the following message ${resp.status}`);
               }
-              ownProps.history.push('/users');
+
         })
         .catch(err => {
             console.log('[CREATE_USER_ERROR]: ', err)
