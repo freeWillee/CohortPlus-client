@@ -1,14 +1,13 @@
 import * as actionTypes from '../constants/index.js';
 
 export const getUsers = () => {
+    console.log('[IN getUserAction]')
     return dispatch => {
-        
-        dispatch({type: actionTypes.FETCHING_USERS})
 
         return fetch('http://localhost:3001/api/v1/users')
             .then(resp => resp.json())
             .then(usersJSONED => {
-                console.log('[IN ASYNC GET_USERS ACTION]: ', usersJSONED.data)
+                console.log('[GET_USERS ACTION] - data from server: ', usersJSONED.data)
                 const users = usersJSONED.data
                 dispatch({
                     type: actionTypes.GET_USERS,
@@ -31,15 +30,11 @@ export const createNewUser = (formData, ownProps) => {
             })
         .then(resp => {
             if(resp.ok) {
-                const users = resp
-                dispatch({
-                    type: actionTypes.GET_USERS,
-                    users
-                })
+                dispatch(getUsers())
               } else {
                 throw Error(`Request rejected with the following message ${resp.status}`);
               }
-            //   ownProps.history.push('/users');
+              ownProps.history.push('/users');
         })
         .catch(err => {
             console.log('[CREATE_USER_ERROR]: ', err)
@@ -49,6 +44,8 @@ export const createNewUser = (formData, ownProps) => {
 
 export const editUser = (formData, ownProps) => {
     return dispatch => {
+        console.log('[editUserAction]', 'formData: ', formData, 'ownProps: ', ownProps)
+
         fetch(
             `http://localhost:3001/api/v1/users/${formData.id}`, {
                 method: 'PATCH',
@@ -59,36 +56,36 @@ export const editUser = (formData, ownProps) => {
             })
         .then(resp => {
             if(resp.ok) {
-                const users = resp
-                dispatch({
-                    type: actionTypes.GET_USERS,
-                    users
-                })
+                dispatch(getUsers())
               } else {
                 throw Error(`Request rejected with the following message ${resp.status}`);
               }
         })
         .catch(err => {
             console.log('[CREATE_USER_ERROR]: ', err)
+            dispatch({
+                type: actionTypes.TOGGLE_ERROR
+            })
         })
     }
 }
 
 export const getPositions = () => {
+    console.log('[IN getPositionsAction]')
     return dispatch => {
-        
-        dispatch({type: actionTypes.FETCHING_POSITIONS})
 
         return fetch('http://localhost:3001/api/v1/positions')
             .then(resp => resp.json())
             .then(positionsJSONED => {
-                console.log('[IN ASYNC GET_POSITIONS ACTION]: ', positionsJSONED.data)
+                console.log('[GetPositions action - data from server]: ', positionsJSONED.data)
                 const positions = positionsJSONED.data
                 dispatch({
                     type: actionTypes.GET_POSITIONS,
                     positions
                 })
+            })            
+            .catch(err => {
+                console.log('[FETCH_POSITIONS_ERROR]: ', err)
             })
-            .catch(err => console.log('[FETCH_POSITIONS_ERROR]: ', err))
     }
 }
