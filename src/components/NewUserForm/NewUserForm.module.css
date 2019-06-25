@@ -17,15 +17,16 @@
     box-sizing: border-box;
 }
 
-.FormContainer positions {
+.FormContainer section {
     display:block;
     margin-top: 20px;
     text-align: left;
 }
 
-.FormContainer positions label {
+.FormContainer section label {
     font: inherit;
-    margin: 1px 0;
+    display:block;
+    margin: 5px 0;
 }
 
 @media (min-width: 600px) {
