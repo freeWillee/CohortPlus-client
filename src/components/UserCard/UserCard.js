@@ -42,7 +42,7 @@ class UserCard extends Component {
 
     handleEditUserLinkClick = (e) => {
         e.preventDefault()
-        console.log("editing details")
+        console.log("[UserCard.js - Clicked on Edit User Link")
         this.handleOpenEdit()
     }
 
@@ -79,8 +79,6 @@ class UserCard extends Component {
 
     handleSubmitEditForm = () => {
         const {editUser} = this.props
-        console.log('SUBMITTED EDIT FORM - here is the final state:')
-        console.log(this.state.editUser)
         editUser(this.state.editUser)
         this.handleCloseEdit()
     }
