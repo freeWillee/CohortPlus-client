@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Switch, Route, withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
+import {getCurrentUser} from './actions/currentUser'
 
 import './App.css';
 import UsersIndex from './containers/UsersIndex/UsersIndex';
@@ -14,21 +15,19 @@ import ProjectPage from './containers/ProjectPage/ProjectPage'
 
 class App extends Component {
   componentDidMount() {
-    this.props.getUsers()
-    this.props.getProjects()
-    this.props.getPositions()
+    this.props.getCurrentUser()
   }
 
   render() {
     return (
       <div>
-        <Navbar />
+        {/* <Navbar /> */}
         <Switch>
-          <Route exact path="/users" component={UsersIndex}/>
+          {/* <Route exact path="/users" component={UsersIndex}/>
           <Route exact path="/users/new" component={NewUserPage}/>
           <Route exact path="/tasks/new" component={NewTaskPage}/>
           <Route exact path="/projects" component={ProjectsIndex}/>
-          <Route exact path="/projects/1" render={props=> <ProjectPage {...props} projectId={"1"} />}/>
+          <Route exact path="/projects/1" render={props=> <ProjectPage {...props} projectId={"1"} />}/> */}
           <Route component={Login}/>
         </Switch>
       </div>
@@ -36,4 +35,4 @@ class App extends Component {
   }
 }
 
-export default withRouter(connect(null, {getUsers, getProjects, getPositions})(App));
+export default withRouter(connect(null, {getUsers, getProjects, getPositions, getCurrentUser})(App));
