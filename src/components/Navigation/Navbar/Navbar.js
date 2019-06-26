@@ -4,7 +4,7 @@ import classes from './Navbar.module.css';
 
 const Navbar = () => {
     return (
-        <div>
+        <div className={classes.Bar}>
             <NavLink
                 to="/"
                 exact
@@ -34,6 +34,16 @@ const Navbar = () => {
                 }}
             >
                 Add Team Member
+            </NavLink>
+            <NavLink
+                to="/tasks/new"
+                exact
+                className={classes.Link}
+                activeStyle={{
+                    background: 'darkblue'
+                }}
+            >
+                Add a New Task
             </NavLink>
         </div>
     )
