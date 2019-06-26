@@ -6,10 +6,6 @@ import * as actionCreators from '../../actions/index';
 import classes from './ProjectsIndex.module.css';
 
 class ProjectsIndex extends Component {
-    componentDidMount(){
-        this.props.getProjects()
-    }
-
     render() {
         let projects
         if (this.props.projects.length > 0) {

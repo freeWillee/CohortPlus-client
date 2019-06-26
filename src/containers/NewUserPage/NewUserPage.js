@@ -6,7 +6,6 @@ import NewUserForm from '../../components/NewUserForm/NewUserForm';
 
 class NewUserPage extends Component {
     componentDidMount(){
-        this.props.getPositions()
     }
     
     render() {

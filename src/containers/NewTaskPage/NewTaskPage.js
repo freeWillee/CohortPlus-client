@@ -5,11 +5,6 @@ import * as actionCreators from '../../actions/index';
 import NewTaskForm from '../../components/NewTaskCard/NewTaskCard';
 
 class NewTaskPage extends Component {
-    componentDidMount(){
-        this.props.getProjects()
-        this.props.getUsers()
-    }
-
     render() {
         return (
             <NewTaskForm
@@ -35,6 +30,5 @@ const mapStateToProps = state => {
         projects: state.projects.listing
     }
 }
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(NewTaskPage);

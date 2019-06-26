@@ -11,10 +11,7 @@ class UsersIndex extends Component {
         sortBy: "lastName",
     }
 
-    componentDidMount(){
-        console.log('[UsersIndex - COMPONENT DID MOUNT]: ', )
-        this.props.getUsers()
-        this.props.fetchPositions()
+    componentDidMount(){     
     }
 
     shouldComponentUpdate(nextProps, nextState) {
@@ -111,9 +108,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
-        getUsers: () => dispatch(actionCreators.getUsers()),
         editUser: (formData) => dispatch(actionCreators.editUser(formData, ownProps)),
-        fetchPositions: () => dispatch(actionCreators.getPositions())       
     }
 }
 

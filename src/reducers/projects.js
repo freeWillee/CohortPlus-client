@@ -11,11 +11,6 @@ export default (state=initialState, action) => {
                 ...state,
                 listing: action.projects,        
             }
-        case actionTypes.FETCHING_PROJECTS:
-        case actionTypes.ADD_NEW_PROJECT:
-            return {
-                ...state
-            }
         default:
             return state
     }
