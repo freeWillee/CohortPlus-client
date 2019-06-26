@@ -1,4 +1,5 @@
 // USERS
+export const SET_CURRENT_USER = 'SET_CURRENT_USER';
 export const GET_USERS = 'GET_USERS';
 export const FETCHING_USERS = 'FETCHING_USERS';
 export const ADD_NEW_USER = 'ADD_NEW_USER';
@@ -15,6 +16,5 @@ export const ADD_NEW_PROJECT = 'ADD_NEW_PROJECT';
 // TASKS
 export const ADD_NEW_TASK = 'ADD_NEW_TASK';
 
-// SERVER
-export const TOGGLE_LOADING = 'TOGGLE_LOADING';
-export const TOGGLE_ERROR = 'TOGGLE_ERROR';
+// SESSION
+export const UPDATE_LOGIN_FORM = 'UPDATE_LOGIN_FORM';

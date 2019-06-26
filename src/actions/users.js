@@ -63,9 +63,6 @@ export const editUser = (formData, ownProps) => {
         })
         .catch(err => {
             console.log('[CREATE_USER_ERROR]: ', err)
-            dispatch({
-                type: actionTypes.TOGGLE_ERROR
-            })
         })
     }
 }

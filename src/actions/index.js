@@ -14,6 +14,7 @@ export {
 } from './tasks'
 
 export {
-    toggleLoading,
-    toggleError
-} from './server'
+    setCurrentUser,
+    getCurrentUser,
+    login
+} from './currentUser'
