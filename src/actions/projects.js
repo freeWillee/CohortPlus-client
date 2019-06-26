@@ -2,13 +2,11 @@ import * as actionTypes from '../constants/index.js';
 
 export const getProjects = () => {
     return dispatch => {
-        
-        dispatch({type: actionTypes.FETCHING_PROJECTS})
 
         return fetch('http://localhost:3001/api/v1/projects')
             .then(resp => resp.json())
             .then(projectsJSONED => {
-                console.log('[IN ASYNC GET_PROJECTS ACTION]: ', projectsJSONED.data)
+                console.log('[GET_PROJECTS ACTION] - data from server: ', projectsJSONED.data)
                 const projects = projectsJSONED.data
                 dispatch({
                     type: actionTypes.GET_PROJECTS,
@@ -31,15 +29,11 @@ export const createNewProject = (formData, ownProps) => {
             })
         .then(resp => {
             if(resp.ok) {
-                const users = resp
-                dispatch({
-                    type: actionTypes.GET_USERS,
-                    users
-                })
+                ownProps.history.push('/projects');
               } else {
                 throw Error(`Request rejected with the following message ${resp.status}`);
               }
-              ownProps.history.push('/users');
+
         })
         .catch(err => {
             console.log('[CREATE_PROJECT_ERROR]: ', err)
