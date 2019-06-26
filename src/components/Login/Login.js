@@ -1,34 +1,41 @@
-import React, {Component} from 'react';
+import React from 'react';
+import {connect} from 'react-redux';
+import {updateLoginForm} from '../../actions/loginForm';
+import {login} from '../../actions/currentUser';
 
-class Login extends Component {    
-    
-    state = {
-        username: "",
-        password: ""
+const Login = ({loginFormData, updateLoginForm, login}) => {        
+    const handleInputChange = event => {
+        const { name, value } = event.target
+        const updatedFormInfo = {
+            ...loginFormData,
+            [name]: value,
+        }
+        updateLoginForm(updatedFormInfo)
     }
 
-    handleOnChange = event => {
-        this.setState({
-            [event.target.name]: event.target.value
-        })
+    const handleSubmit = event => {
+        event.preventDefault()
+        login(loginFormData)
     }
 
-    render() {
-        const {handleSubmit} = this.props
-
-        return (
-            <div>
-                <h1>Login Page</h1>
-                <form onSubmit={() => handleSubmit(this.state)}>
-                    <label>Username: </label>
-                    <input type="text" onChange={this.handleOnChange} name="username" value={this.state.username} />
-                    <label>Password: </label>
-                    <input type="text" onChange={this.handleOnChange} name="password" value={this.state.password} />
-                    <input type="submit" value="Login" />
-                </form>
-            </div>
-        )
-    }    
+    return (
+        <div>
+            <h1>Login Page</h1>
+            <form onSubmit={handleSubmit}>
+                <label>Username: </label>
+                <input type="text" onChange={handleInputChange} name="username" value={loginFormData.username} />
+                <label>Password: </label>
+                <input type="text" onChange={handleInputChange} name="password" value={loginFormData.password} />
+                <input type="submit" value="Login" />
+            </form>
+        </div>
+    )  
 }
 
-export default Login;
+const mapStateToProps = state => {
+    return {
+        loginFormData: state.loginForm
+    }
+}
+
+export default connect(mapStateToProps, {updateLoginForm, login})(Login);
