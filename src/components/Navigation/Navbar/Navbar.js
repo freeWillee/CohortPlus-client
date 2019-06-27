@@ -1,11 +1,15 @@
 import React from 'react';
-import {NavLink} from 'react-router-dom';
-import classes from './Navbar.module.css';
+import {connect} from 'react-redux';
+import {NavLink, Route} from 'react-router-dom';
 
-const Navbar = () => {
+import classes from './Navbar.module.css';
+import Login from '../../Login/Login';
+import Logout from '../../Logout/Logout';
+
+const Navbar = ({currentUser}) => {
     return (
         <div className={classes.Bar}>
-            <NavLink
+            {/* <NavLink
                 to="/"
                 exact
                 className={classes.Link}
@@ -44,9 +48,18 @@ const Navbar = () => {
                 }}
             >
                 Add a New Task
-            </NavLink>
+            </NavLink> */}
+            <div className={classes.SessionNav}>
+                {currentUser ? <Route component={Logout}/> : <Route component={Login}/>}
+            </div>
         </div>
     )
 }
 
-export default Navbar;
+const mapStateToProps = ({ currentUser }) => {
+    return {
+        currentUser
+    }
+}
+
+export default connect(mapStateToProps)(Navbar);

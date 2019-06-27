@@ -1,5 +1,8 @@
 .Bar {
     margin: 30px 0;
+    padding: 15px; 
+    width: 100%;
+    background: grey
 }
 .Link {
     width: 100px;
@@ -8,4 +11,8 @@
     background: blue;
     text-decoration: none;
     color: white;
+}
+
+.SessionNav {
+
 }
