@@ -1,8 +1,10 @@
 // USERS
 export const SET_CURRENT_USER = 'SET_CURRENT_USER';
+export const CLEAR_CURRENT_USER = 'CLEAR_CURRENT_USER';
 export const GET_USERS = 'GET_USERS';
 export const FETCHING_USERS = 'FETCHING_USERS';
 export const ADD_NEW_USER = 'ADD_NEW_USER';
+export const LOGOUT_USER = 'LOGOUT_USER';
 
 // POSITIONS
 export const GET_POSITIONS = 'GET_POSITIONS';
