@@ -30,7 +30,7 @@ export const login = credentials => {
         .then(resp => resp.json())
         .then(user => {
             if (user.error) {
-                alert(user.error)
+                alert(`${user.error} - please double check username and password`)
             } else {
                 dispatch(setCurrentUser(user.data))
             }
