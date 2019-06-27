@@ -16,6 +16,11 @@ const Login = ({loginFormData, updateLoginForm, login}) => {
     const handleSubmit = event => {
         event.preventDefault()
         login(loginFormData)
+        const updatedFormInfo = {
+            username: "",
+            password: ""
+        }
+        updateLoginForm(updatedFormInfo)
     }
 
     return (
