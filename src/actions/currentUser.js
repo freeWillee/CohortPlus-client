@@ -14,6 +14,7 @@ export const login = credentials => {
     console.log("[LOGIN CREDENTIALS]", credentials)
     return dispatch => {
         return fetch("http://localhost:3001/api/v1/login", {
+            credentials: "include",
             method: 'POST',
             headers: {
                 "Content-Type": "application/json"
@@ -25,7 +26,7 @@ export const login = credentials => {
             if (user.error) {
                 alert(user.error)
             } else {
-                dispatch(setCurrentUser(user))
+                dispatch(setCurrentUser(user.data))
             }
         })
         .catch()
@@ -35,6 +36,7 @@ export const login = credentials => {
 export const getCurrentUser = () => {
     return dispatch => {
         return fetch("http://localhost:3001/api/v1/get_current_user", {
+            credentials: "include",
             method: 'GET',
             headers: {
                 "Content-Type": "application/json"
@@ -42,10 +44,11 @@ export const getCurrentUser = () => {
         })
         .then(resp => resp.json())
         .then(user => {
+            console.log(user.data)
             if (user.error) {
                 alert(user.error)
             } else {
-                dispatch(setCurrentUser(user))
+                dispatch(setCurrentUser(user.data))
             }
         })
         .catch()
