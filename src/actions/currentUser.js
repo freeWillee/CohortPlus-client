@@ -1,4 +1,5 @@
 import * as actionTypes from '../constants/index';
+import { resetLoginForm } from './loginForm';
 
 // sync actions
 export const setCurrentUser = user => {
@@ -33,6 +34,7 @@ export const login = credentials => {
                 alert(`${user.error} - please double check username and password`)
             } else {
                 dispatch(setCurrentUser(user.data))
+                dispatch(resetLoginForm())
             }
         })
         .catch()

@@ -20,3 +20,4 @@ export const ADD_NEW_TASK = 'ADD_NEW_TASK';
 
 // SESSION
 export const UPDATE_LOGIN_FORM = 'UPDATE_LOGIN_FORM';
+export const RESET_LOGIN_FORM = 'RESET_LOGIN_FORM';
