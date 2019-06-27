@@ -49,6 +49,7 @@ const Navbar = ({currentUser}) => {
             >
                 Add a New Task
             </NavLink> */}
+            {currentUser ? `Welcome ${currentUser.attributes.first_name}` : null}
             <div className={classes.SessionNav}>
                 {currentUser ? <Route component={Logout}/> : <Route component={Login}/>}
             </div>
