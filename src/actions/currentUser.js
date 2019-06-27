@@ -9,7 +9,9 @@ export const setCurrentUser = user => {
 }
 
 export const clearCurrentUser = () => {
-    type: actionTypes.CLEAR_CURRENT_USER
+    return {
+        type: actionTypes.CLEAR_CURRENT_USER
+    }
 }
 
 // async actions
@@ -62,7 +64,7 @@ export const getCurrentUser = () => {
         .then(user => {
             console.log(user.data)
             if (user.error) {
-                alert(user.error)
+                console.log(user.error)
             } else {
                 dispatch(setCurrentUser(user.data))
             }
