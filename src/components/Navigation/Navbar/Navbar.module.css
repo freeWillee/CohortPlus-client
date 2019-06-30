@@ -3,20 +3,38 @@
     flex-flow: row;
     justify-content: space-around;
     margin: 30px 0;
-    padding: 15px; 
+    /* padding: 15px;  */
     width: 100%;
+    background-color: #0b98de;
     border-top: solid grey;
     border-bottom: solid grey;
 }
-.Link {
-    width: 100px;
-    padding: 12px;
-    margin: 0 6px 6px;
-    background: blue;
-    text-decoration: none;
+
+.Link, .Links button{
+    margin: 0 10px;
+    display: block; 
+    float: left;
+    text-decoration: none;    
+    /* border: 1px solid #000; */
+    font: inherit;
+    color: black;
+    background-color: #0b98de;
+    padding-top: 25px;
+    padding-right: 10px;    
+    padding-bottom: 10px;    
+    padding-left: 10px;
+}
+
+.Links button:hover {
+    background-color: #17b0cf;
+}
+
+.Username{
     color: white;
 }
 
-.SessionNav {
-
-}
+/* input {
+    margin: 10px;
+    width: 100%;
+    padding: 10px;
+} */
