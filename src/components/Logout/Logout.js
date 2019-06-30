@@ -1,20 +1,19 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {logout} from '../../actions/currentUser';
+import classes from './Logout.module.css';
 
-const Login = ({logout}) => {            
+const Logout = ({logout, history}) => {            
     const handleSubmit = event => {
         event.preventDefault()
-        logout()
+        logout(history)
     }
 
     return (
-        <div>
-            <form onSubmit={handleSubmit}>
-                <input type="submit" value="Logout" />
-            </form>
-        </div>
+        <form onSubmit={handleSubmit}>
+            <input type="submit" value="Logout" />
+        </form>
     )  
 }
 
-export default connect(null, {logout})(Login);
+export default connect(null, {logout})(Logout);

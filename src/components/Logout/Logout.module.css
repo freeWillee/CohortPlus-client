@@ -1,0 +1,13 @@
+.Logout {
+    display: inline-flex;
+    height: 100%;
+}
+
+.Form input {
+    background-color: grey;
+    height: 100%;
+    padding: 10px;
+    color: orange;
+    font: inherit;
+    justify-content: end;
+}
