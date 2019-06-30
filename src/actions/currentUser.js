@@ -41,7 +41,7 @@ export const login = (credentials, history) => {
                 dispatch(getPositions())
                 dispatch(getMyTasks())
                 dispatch(resetLoginForm())
-                history.push("/my-tasks")
+                history.push("/my-dashboard")
             }
         })
         .catch()
