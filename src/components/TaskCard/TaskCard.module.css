@@ -1,0 +1,9 @@
+.TaskCard {
+    display: flex;
+    justify-content: center;
+    flex-flow: column nowrap;
+    align-items: center;
+    border: 1px grey solid;
+    margin: 30px;
+    width: 200px;
+}
