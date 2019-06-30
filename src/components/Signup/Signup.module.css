@@ -1,0 +1,31 @@
+.Container{
+    align-items: center;
+    text-align: center;
+}
+
+.SignupForm {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.SignupForm input {
+    margin: 10px;
+    width: 100%;
+    padding: 10px;
+}
+
+.SignupForm input[type=submit] {
+    align-self: center;
+    width: 90px;
+    font:inherit;
+    font-size: 1em;
+    padding:5px 15px; 
+    background:#ccc; 
+    cursor:pointer;
+    background: #09c;
+    color: #fff;
+    height: 30px;
+    border-radius: 15px;
+    border: 1px solid #999;
+}
