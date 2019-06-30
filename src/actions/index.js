@@ -10,11 +10,17 @@ export {
 } from './projects'
 
 export {
-    createNewTask
+    createNewTask,
 } from './tasks'
 
 export {
+    setMyTasks
+} from './myTasks'
+
+export {
     setCurrentUser,
+    clearCurrentUser,
+    login,
+    logout,
     getCurrentUser,
-    login
 } from './currentUser'
