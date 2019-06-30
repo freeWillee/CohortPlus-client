@@ -8,7 +8,6 @@ class ProjectPage extends Component {
 
     render() {
         const {projectId} = this.props
-        debugger
         return (
             <div>
                 <div className={classes.Header}>PROJECT TITLE - Project # {projectId}</div>

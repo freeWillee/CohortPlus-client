@@ -25,6 +25,7 @@ class NewUserForm extends Component {
         profile_url: "",
         position: this.props.positions[0].attributes.title,
         showPassword: false,
+        isSignUp: false,
     }
 
     handleChange = event => {

@@ -10,14 +10,6 @@ class UsersIndex extends Component {
     state = {
         sortBy: "lastName",
     }
-
-    componentDidMount(){     
-    }
-
-    shouldComponentUpdate(nextProps, nextState) {
-        console.log('[UsersIndex - shouldComponentUpdate]: ', 'nextProps: ', nextProps, 'nextState: ', nextState )
-        return true
-    }
     
     // find a user's position
     findUserPosition = user => {
