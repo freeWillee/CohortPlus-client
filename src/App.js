@@ -7,6 +7,7 @@ import UsersIndex from './containers/UsersIndex/UsersIndex';
 import ProjectsIndex from './containers/ProjectsIndex/ProjectsIndex';
 import NewUserPage from './containers/NewUserPage/NewUserPage';
 import NewTaskPage from './containers/NewTaskPage/NewTaskPage';
+import NewProjectPage from './containers/NewProjectPage/NewProjectPage';
 import Navbar from './components/Navigation/Navbar/Navbar';
 import {
   getProjects, 
@@ -14,8 +15,7 @@ import {
   getPositions, 
   getCurrentUser
 } from './actions/index';
-import ProjectPage from './containers/ProjectPage/ProjectPage'
-import MyTasks from './containers/MyTasks/MyTasks'
+import MyDashboard from './containers/MyDashboard/MyDashboard'
 import MainContainer from './containers/MainContainer/MainContainer';
 import Login from './components/Login/Login';
 import Homepage from './components/Homepage/Homepage';
@@ -36,8 +36,7 @@ class App extends Component {
         
         <MainContainer>
           <Route exact path="/login" component={Login}/>
-          <Route exact path="/my-dashboard" component={ProjectPage}/>
-          <Route exact path="/my-dashboard" component={MyTasks}/>
+          <Route exact path="/my-dashboard" component={MyDashboard}/>
           <Route exact path="/" component={Homepage}/>
           <Route exact path="/signup" render={
             () => (
@@ -46,11 +45,8 @@ class App extends Component {
           <Route exact path="/users" component={UsersIndex}/>
           <Route exact path="/users/new" component={NewUserPage}/>
           <Route exact path="/tasks/new" component={NewTaskPage}/>
+          <Route exact path="/projects/new" component={NewProjectPage}/>
           <Route exact path="/projects" component={ProjectsIndex}/>
-
-          <Switch>
-            {/* <Route exact path="/projects/1" render={props=> <ProjectPage {...props} projectId={"1"} />}/> */}
-          </Switch>
         </MainContainer>
       </div>
     );

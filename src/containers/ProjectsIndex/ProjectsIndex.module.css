@@ -1,0 +1,10 @@
+.Header {
+    text-align: center
+}
+
+.Project{
+    display: flex;
+    align-content: space-around;
+    justify-content: center;
+    flex-flow: wrap;
+}
