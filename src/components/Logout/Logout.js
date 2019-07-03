@@ -10,7 +10,7 @@ const Logout = ({logout, history}) => {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className={classes.LogoutButton}>
             <input type="submit" value="Logout" />
         </form>
     )  

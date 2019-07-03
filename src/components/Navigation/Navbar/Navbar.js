@@ -9,7 +9,7 @@ import NewUserForm from '../../NewUserForm/NewUserForm';
 
 const Navbar = ({currentUser, isLoggedIn, history}) => {
     const loggedInNav = (
-        <div>            
+        <div className={classes.Links}>            
             <NavLink
                 to="/"
                 exact
@@ -28,6 +28,15 @@ const Navbar = ({currentUser, isLoggedIn, history}) => {
                     color: 'white',
                 }}
             >My Dashboard</NavLink>
+            <NavLink
+                to="/projects"
+                exact
+                className={classes.Link}
+                activeStyle={{
+                    background: 'purple',
+                    color: 'white',
+                }}
+            >Show All Projects</NavLink>            
             <NavLink
                 to="/users"
                 exact
@@ -55,6 +64,16 @@ const Navbar = ({currentUser, isLoggedIn, history}) => {
                     color: 'white',
                 }}
             >Add a New Task</NavLink>
+            <NavLink
+                to="/projects/new"
+                exact
+                className={classes.Link}
+                activeStyle={{
+                    background: 'purple',
+                    color: 'white',
+                }}
+            >Create Project</NavLink>
+
             <Logout history={history}/>
         </div>
     )

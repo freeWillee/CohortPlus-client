@@ -1,13 +1,19 @@
-.Logout {
+/* .Logout {
     display: inline-flex;
     height: 100%;
-}
+} */
 
-.Form input {
-    background-color: grey;
-    height: 100%;
-    padding: 10px;
-    color: orange;
+.LogoutButton input {
+    margin: 0 10px;
+    display: block; 
+    float: left;
+    text-decoration: none;    
+    border: none;
     font: inherit;
-    justify-content: end;
+    color: black;
+    background-color: #0b98de;
+    padding-top: 25px;
+    padding-right: 10px;    
+    padding-bottom: 10px;    
+    padding-left: 10px;
 }
