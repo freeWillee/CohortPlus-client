@@ -6,7 +6,9 @@ export {
 } from './users'
 
 export {
-    getProjects
+    getProjects,
+    createNewProject,
+    editProject,
 } from './projects'
 
 export {
@@ -14,8 +16,14 @@ export {
 } from './tasks'
 
 export {
-    setMyTasks
+    setMyTasks,
+    clearMyTasks,
 } from './myTasks'
+
+export {
+    setMyProjects,
+    clearMyProjects,
+} from './myProjects'
 
 export {
     setCurrentUser,
