@@ -4,27 +4,36 @@ import {withRouter} from 'react-router-dom';
 
 import * as actionCreators from '../../actions/index';
 import classes from './ProjectsIndex.module.css';
+import ProjectCard from '../../components/ProjectCard/ProjectCard';
+import {sortThisArray} from '../../helpers/sort';
 
 class ProjectsIndex extends Component {
+    
+    state = {
+        sortBy: "title",
+    }
+
     render() {
-        let projects
+        let projectsToRender
+
         if (this.props.projects.length > 0) {
-            projects = this.props.projects.map(project=>{            
-                const {title, deadline} = project.attributes
-                let timing = deadline
-                if (timing === null) {
-                    timing = "No deadline set"
-                }
-                return <li key={project.id}>{title} || {timing}</li>
+            let projectsToMap = sortThisArray(this.props.projects, this.state.sortBy)
+            
+            projectsToRender = projectsToMap.map(project=>{           
+                return <ProjectCard 
+                    key={project.id}
+                    project={project} 
+                    editProject={(formData, ownProps) => this.props.editProject(formData, ownProps)}
+                />
             })
         }
 
         return (
             <div>
-                <h1 className={classes.Header}>Project List</h1>
-                <ul className={classes.ProjectList}>
-                    {projects}
-                </ul>
+                <h1 className={classes.Header}>Project Directory</h1>
+                <div className={classes.Project}>
+                    {projectsToRender}
+                </div>
             </div>
         )
     }
@@ -36,9 +45,10 @@ const mapStateToProps = state => {
     }
 }
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch, ownProps) => {
     return {
-        getProjects: () => dispatch(actionCreators.getProjects())
+        getProjects: () => dispatch(actionCreators.getProjects()),
+        editProject: (formData) => dispatch(actionCreators.editProject(formData, ownProps)),
     }
 }
 
