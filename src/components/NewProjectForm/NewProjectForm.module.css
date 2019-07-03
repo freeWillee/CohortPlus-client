@@ -1,0 +1,34 @@
+.Heading {
+    width: 80%;
+    text-align: center;
+    margin:auto;
+}
+
+.FormContainer {
+    margin: 20px auto;
+    width: 80%;
+    text-align: center;
+    padding: 30px;    
+}
+
+.TextField {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.FormContainer form {    
+    display:flex;
+    flex-flow: column wrap;
+}
+
+.FormContainer form {
+    font: inherit;
+    margin: 1px 0;
+}
+
+@media (min-width: 600px) {
+    .FormContainer {
+        width: 500px;
+    }
+}
