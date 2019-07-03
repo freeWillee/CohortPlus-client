@@ -30,7 +30,7 @@ export const createNewProject = (formData, ownProps) => {
         .then(resp => {
             if(resp.ok) {
                 dispatch(getProjects())
-                ownProps.history.push('/my-dashboard');
+                ownProps.history.push('/projects');
               } else {
                 throw Error(`Request rejected with the following message ${resp.status}`);
               }
