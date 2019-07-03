@@ -15,7 +15,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
-import {styles} from '../hoc/material-ui/UserCard';
+import {styles} from '../hoc/material-ui/CardLayout';
 
 
 class UserCard extends Component {
