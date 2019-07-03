@@ -14,6 +14,8 @@ export const FETCHING_POSITIONS = 'FETCHING_POSITIONS';
 export const GET_PROJECTS = 'GET_PROJECTS';
 export const FETCHING_PROJECTS = 'FETCHING_PROJECTS';
 export const ADD_NEW_PROJECT = 'ADD_NEW_PROJECT';
+export const SET_MY_PROJECTS = 'SET_MY_PROJECTS';
+export const CLEAR_MY_PROJECTS = 'CLEAR_MY_PROJECTS';
 
 // TASKS
 export const ADD_NEW_TASK = 'ADD_NEW_TASK';
@@ -27,3 +29,12 @@ export const RESET_LOGIN_FORM = 'RESET_LOGIN_FORM';
 // SIGNUP
 export const UPDATE_SIGNUP_FORM = 'UPDATE_SIGNUP_FORM';
 export const RESET_SIGNUP_FORM = 'RESET_SIGNUP_FORM';
+
+// SORT_FUNCTION
+export const FIRST_NAME = 'firstName';
+export const LAST_NAME = 'lastName';
+export const POSITION = 'position';
+export const EMAIL = 'email';
+export const TITLE = 'title';
+export const DESCRIPTION = 'description';
+export const DEADLINE = 'deadline';
