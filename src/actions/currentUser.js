@@ -1,6 +1,7 @@
 import * as actionTypes from '../constants/index';
 import { resetLoginForm } from './loginForm';
 import { getMyTasks } from './myTasks';
+import { getMyProjects } from './myProjects';
 import { getPositions } from './users';
 import { clearMyTasks } from './myTasks';
 
@@ -89,6 +90,7 @@ export const getCurrentUser = () => {
                 dispatch(setCurrentUser(user.data))
                 dispatch(getPositions())
                 dispatch(getMyTasks())
+                dispatch(getMyProjects(user.data.id))
             }
         })
         .catch()
