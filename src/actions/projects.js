@@ -29,11 +29,38 @@ export const createNewProject = (formData, ownProps) => {
             })
         .then(resp => {
             if(resp.ok) {
-                ownProps.history.push('/projects');
+                dispatch(getProjects())
+                ownProps.history.push('/my-dashboard');
               } else {
                 throw Error(`Request rejected with the following message ${resp.status}`);
               }
 
+        })
+        .catch(err => {
+            console.log('[CREATE_PROJECT_ERROR]: ', err)
+        })
+    }
+}
+
+export const editProject = (formData, ownProps) => {
+    return dispatch => {
+        console.log('[editProjectAction]', 'formData: ', formData, 'ownProps: ', ownProps)
+
+        fetch(
+            `http://localhost:3001/api/v1/projects/${formData.id}`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json'
+                },                
+                body: JSON.stringify(formData)
+            })
+        .then(resp => {
+            if(resp.ok) {
+                console.log(resp)
+                dispatch(getProjects())
+              } else {
+                throw Error(`Request rejected with the following message ${resp.status}`);
+              }
         })
         .catch(err => {
             console.log('[CREATE_PROJECT_ERROR]: ', err)
