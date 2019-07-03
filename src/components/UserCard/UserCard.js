@@ -91,6 +91,7 @@ class UserCard extends Component {
 
         const {user, position, classes} = this.props
         const {username, first_name, last_name, email, profile_url} = user.attributes
+        const {tasks, projects} = user.relationships
         
         return (
             <Card className={classes.card}>
@@ -104,12 +105,14 @@ class UserCard extends Component {
                 <div style={this.state.showFront ? null : {'display':'none'}}>
                     <Grow in={this.state.showFront}>
                         <CardContent>
-                            <Typography gutterBottom variant="h5" component="h2">{username}</Typography>
-                            <Typography gutterBottom variant="h6" component="h2">{first_name} {last_name}</Typography>
-                            <Typography variant="body2" color="textSecondary" component="p">{position}</Typography>
+                            <Typography align="center" color="primary" gutterBottom variant="h6" component="h2">{username}</Typography>
+                            <Typography gutterBottom variant="h5" component="h2">{first_name} {last_name}</Typography>
+                            <Typography variant="h6" color="textSecondary" component="p">{position}</Typography>
                             <a href={'mailto:' + user.attributes.email} style={{'textDecoration':'none'}}>
-                                <Typography variant="subtitle2" color="textSecondary" component="p">{email}</Typography>
+                                <Typography gutterBottom variant="subtitle1" color="textSecondary" component="p">{email}</Typography>
                             </a>
+                            <Typography variant="subtitle2" color="textSecondary" component="p">Tasks Assigned: {tasks.data.length}</Typography>
+                            <Typography variant="subtitle2" color="textSecondary" component="p">Projects Assigned: {projects.data.length}</Typography>
                         </CardContent>
                     </Grow>
                 </div>
