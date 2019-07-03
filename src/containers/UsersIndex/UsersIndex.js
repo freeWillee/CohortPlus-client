@@ -5,6 +5,7 @@ import {withRouter} from 'react-router-dom';
 import * as actionCreators from '../../actions/index';
 import User from '../../components/UserCard/UserCard';
 import classes from './UsersIndex.module.css';
+import {sortThisArray} from '../../helpers/sort';
 
 class UsersIndex extends Component {
     state = {
@@ -67,7 +68,7 @@ class UsersIndex extends Component {
     render() {
         let usersToRender
         if (this.props.directory.length > 0) {            
-            let usersToMap = this.sortUsers(this.props.directory, this.state.sortBy, this.findUserPosition)
+            let usersToMap = sortThisArray(this.props.directory, this.state.sortBy, this.findUserPosition)
             
             usersToRender = usersToMap.map(user=>{
                 const userPosition = this.findUserPosition(user)
