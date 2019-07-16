@@ -1,4 +1,5 @@
 import * as actionTypes from '../constants/index';
+import {getMyProjects} from './myProjects';
 
 // SYNC ACTIONS
 export const setMyTasks = tasks => {
@@ -8,15 +9,23 @@ export const setMyTasks = tasks => {
     }
 }
 
-export const clearMyTasks = () => {
+export const setFilter = projectId => {
     return {
-        type: actionTypes.CLEAR_MY_TASKS
+        type: actionTypes.SET_PROJECT_ID,
+        projectId
+    }
+}
+
+export const resetMyTasks = () => {
+    
+    return {
+        type: actionTypes.RESET_MY_TASKS
     }
 }
 
 
 // ASYNC ACTIONS
-export const getMyTasks = () => {
+export const getMyTasks = ( ) => {
     return dispatch => {
         
         return fetch("http://localhost:3001/api/v1/tasks", {
@@ -29,7 +38,6 @@ export const getMyTasks = () => {
         .then(resp => resp.json())
         .then(tasks => {
             console.log(tasks.data)
-            
             if (tasks.error) {
                 alert(tasks.error)
             } else {
