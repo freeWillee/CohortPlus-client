@@ -68,8 +68,8 @@ export const logout = (history) => {
             else {
                 dispatch(resetMyTasks())
                 dispatch(clearMyProjects())
-                alert(response.message)
                 history.push('/')
+                // alert(response.message)
             }
         })
     }
