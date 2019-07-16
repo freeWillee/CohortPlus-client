@@ -3,7 +3,8 @@ import { resetLoginForm } from './loginForm';
 import { getMyTasks } from './myTasks';
 import { getMyProjects } from './myProjects';
 import { getPositions } from './users';
-import { clearMyTasks } from './myTasks';
+import { resetMyTasks } from './myTasks';
+import { clearMyProjects } from './myProjects';
 
 // sync actions
 export const setCurrentUser = user => {
@@ -40,7 +41,8 @@ export const login = (credentials, history) => {
             } else {
                 dispatch(setCurrentUser(user.data))
                 dispatch(getPositions())
-                dispatch(getMyTasks())
+                dispatch(getMyTasks(user.data.id))
+                dispatch(getMyProjects(user.data.id))
                 dispatch(resetLoginForm())
                 history.push("/my-dashboard")
             }
@@ -64,7 +66,8 @@ export const logout = (history) => {
                 alert(response.error)
             }
             else {
-                dispatch(clearMyTasks())
+                dispatch(resetMyTasks())
+                dispatch(clearMyProjects())
                 alert(response.message)
                 history.push('/')
             }

@@ -6,6 +6,24 @@
     background-color: #0b98de;
     border-top: solid grey;
     border-bottom: solid grey;
+    text-align: center;
+}
+
+.ProfileSection {
+    padding-top: 30px;
+    max-height: 200px;
+    max-width: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: wrap;
+    align-content: space-around;
+}
+
+.Bar img {
+    display: block;
+    max-height: 40%;
+    max-width: 40%;
 }
 
 .Link, .Links button{

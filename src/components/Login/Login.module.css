@@ -1,17 +1,19 @@
 .Container{
     align-items: center;
     text-align: center;
+    width: 100%;
 }
 
 .LoginForm {
     display: flex;
+    width: 90%;
     flex-direction: column;
     margin-top: 20px;
 }
 
 .LoginForm input {
     margin: 10px;
-    width: 100%;
+    width: 90%;
     padding: 10px;
 }
 

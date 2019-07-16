@@ -3,22 +3,11 @@ import {connect} from 'react-redux';
 import {NavLink, Route} from 'react-router-dom';
 
 import classes from './Navbar.module.css';
-import Login from '../../Login/Login';
 import Logout from '../../Logout/Logout';
-import NewUserForm from '../../NewUserForm/NewUserForm';
 
 const Navbar = ({currentUser, isLoggedIn, history}) => {
     const loggedInNav = (
-        <div className={classes.Links}>            
-            <NavLink
-                to="/"
-                exact
-                className={classes.Link}
-                activeStyle={{
-                    background: 'purple',
-                    color: 'white',
-                }}
-            >Home</NavLink>
+        <div className={classes.Links}>                        
             <NavLink
                 to="/my-dashboard"
                 exact
@@ -83,16 +72,25 @@ const Navbar = ({currentUser, isLoggedIn, history}) => {
         history.push(`/${event.target.name}`)
     }
 
-    const loggedOutNav = (
-        <div className={classes.Links}>
-            <button onClick={handleClick} name="signup">Signup</button>
-            <button onClick={handleClick} name="login">Login</button>
-        </div>
-    )
+    // const loggedOutNav = (
+    //     null
+    // )
+
+    const profile = () => {
+        if (isLoggedIn) {
+            return (
+                <div className={classes.ProfileSection}>
+                    <img src={currentUser.attributes.profile_url} />
+                    <p className={classes.Username}>Welcome, {currentUser.attributes.first_name}</p>
+                </div>
+            )
+        }
+    }
+
     return (
         <div className={classes.Bar}>
-            {isLoggedIn ? <p className={classes.Username}>Welcome, {currentUser.attributes.first_name}</p> : null}
-            {isLoggedIn ? loggedInNav : loggedOutNav}
+            {profile()}
+            {isLoggedIn ? loggedInNav : null}
         </div>
     )
 }

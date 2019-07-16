@@ -13,7 +13,8 @@ import {
   getProjects, 
   getUsers, 
   getPositions, 
-  getCurrentUser
+  getCurrentUser,
+  getTasks
 } from './actions/index';
 import MyDashboard from './containers/MyDashboard/MyDashboard'
 import MainContainer from './containers/MainContainer/MainContainer';
@@ -23,10 +24,11 @@ import Signup from './components/Signup/Signup';
 
 class App extends Component {
   componentDidMount() {
-    this.props.getCurrentUser()
     this.props.getPositions()
     this.props.getUsers()
     this.props.getProjects()
+    this.props.getTasks()
+    this.props.getCurrentUser()
   }
 
   render() {
@@ -35,13 +37,8 @@ class App extends Component {
         <Route render={({history})=><Navbar history={history}/>}/>
         
         <MainContainer>
-          <Route exact path="/login" component={Login}/>
           <Route exact path="/my-dashboard" component={MyDashboard}/>
           <Route exact path="/" component={Homepage}/>
-          <Route exact path="/signup" render={
-            () => (
-              this.props.isLoggedIn ? (<Redirect to="/my-tasks"/>) : (<Signup/>)
-              )}/>
           <Route exact path="/users" component={UsersIndex}/>
           <Route exact path="/users/new" component={NewUserPage}/>
           <Route exact path="/tasks/new" component={NewTaskPage}/>
@@ -60,4 +57,4 @@ const mapStateToProps = ({currentUser}) => {
   }
 }
 
-export default withRouter(connect(mapStateToProps, {getUsers, getProjects, getPositions, getCurrentUser, getUsers, getProjects})(App));
+export default withRouter(connect(mapStateToProps, {getUsers, getProjects, getPositions, getCurrentUser, getUsers, getProjects, getTasks})(App));

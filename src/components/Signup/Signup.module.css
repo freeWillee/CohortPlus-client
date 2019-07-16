@@ -1,12 +1,14 @@
 .Container{
     align-items: center;
     text-align: center;
+    width: 100%;
 }
 
 .SignupForm {
     display: flex;
     flex-direction: column;
     margin-top: 20px;
+    width: 90%;
 }
 
 .SignupForm input {

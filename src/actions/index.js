@@ -13,17 +13,24 @@ export {
 
 export {
     createNewTask,
+    getTasks,
 } from './tasks'
 
 export {
     setMyTasks,
-    clearMyTasks,
+    resetMyTasks,
+    setFilter,
 } from './myTasks'
 
 export {
     setMyProjects,
     clearMyProjects,
+    getMyProjects,
 } from './myProjects'
+
+export {
+    toggleModal,
+} from './modal'
 
 export {
     setCurrentUser,

@@ -1,6 +1,7 @@
 import * as actionTypes from '../constants/index';
 import {setCurrentUser} from './currentUser';
-import {getMyTasks} from './myTasks';
+import {getUsers} from './users';
+import {getProjects} from './projects';
 
 export const updateSignupForm = formData => {
     return {
@@ -15,7 +16,7 @@ export const resetSignupForm = () => {
     }
 }
 
-export const signup = credentials => {
+export const signup = (credentials, history) => {
     console.log("[Signup CREDENTIALS]", credentials)
     return dispatch => {
         const userInfo = {
@@ -35,8 +36,10 @@ export const signup = credentials => {
                 alert(user.error)
             } else {
                 dispatch(setCurrentUser(user.data))
-                dispatch(getMyTasks())
+                dispatch(getUsers())
+                dispatch(getProjects())
                 dispatch(resetSignupForm())
+                history.push('/my-dashboard');
             }
         })
         .catch(err=>console.log(err))
