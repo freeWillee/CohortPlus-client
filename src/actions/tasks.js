@@ -1,5 +1,27 @@
+import * as actionTypes from '../constants/index.js';
 import {getMyTasks} from './myTasks';
 import {getProjects} from './projects';
+import {getMyProjects} from './myProjects';
+
+export const getTasks = () => {
+    return dispatch => {
+
+        return fetch('http://localhost:3001/api/v1/tasks')
+            .then(resp => resp.json())
+            .then(tasksJSONED => {
+                console.log('[GET_TASKS ACTION] - data from server: ', tasksJSONED.data)
+                const tasks = tasksJSONED.data
+                if (!!tasks) {
+                    dispatch({
+                        type: actionTypes.GET_TASKS,
+                        tasks
+                    })
+                }
+            })
+            .catch(err => console.log('[FETCH_TASKS_ERROR]: ', err))
+    }
+}
+
 export const createNewTask = (formData, ownProps) => {
     return dispatch => {
         fetch(
@@ -7,7 +29,7 @@ export const createNewTask = (formData, ownProps) => {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
-                },                
+                },
                 body: JSON.stringify(formData)
             })
         .then(resp => {
