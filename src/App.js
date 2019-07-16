@@ -38,7 +38,7 @@ class App extends Component {
         
         <MainContainer>
           <Route exact path="/my-dashboard" component={MyDashboard}/>
-          <Route exact path="/" component={Homepage}/>
+          <Route exact path="/" render={({history})=><Homepage history={history}/>}/>
           <Route exact path="/users" component={UsersIndex}/>
           <Route exact path="/users/new" component={NewUserPage}/>
           <Route exact path="/tasks/new" component={NewTaskPage}/>
