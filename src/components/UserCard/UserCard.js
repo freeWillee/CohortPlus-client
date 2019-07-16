@@ -16,6 +16,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
 import {styles} from '../hoc/material-ui/CardLayout';
+import {getUnique} from '../../helpers/getUnique';
 
 
 class UserCard extends Component {
@@ -112,7 +113,7 @@ class UserCard extends Component {
                                 <Typography gutterBottom variant="subtitle1" color="textSecondary" component="p">{email}</Typography>
                             </a>
                             <Typography variant="subtitle2" color="textSecondary" component="p">Tasks Assigned: {tasks.data.length}</Typography>
-                            <Typography variant="subtitle2" color="textSecondary" component="p">Projects Assigned: {projects.data.length}</Typography>
+                            <Typography variant="subtitle2" color="textSecondary" component="p">Projects Assigned: {getUnique(projects.data, "id").length}</Typography>
                         </CardContent>
                     </Grow>
                 </div>
