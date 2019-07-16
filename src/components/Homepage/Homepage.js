@@ -11,7 +11,7 @@ import Login from '../Login/Login';
 
 
 
-const Homepage = (props, {history}) => {
+const Homepage = (props) => {
     let modalToShow = null;
 
     const handleClick = (event) => {
@@ -32,9 +32,9 @@ const Homepage = (props, {history}) => {
     }
 
     if (props.showLogin) {
-        modalToShow = <Login />
+        modalToShow = <Login history={props.history}/>
     } else if (props.showSignup) {
-        modalToShow = <Signup history={history}/>
+        modalToShow = <Signup history={props.history}/>
     }
 
     return (
