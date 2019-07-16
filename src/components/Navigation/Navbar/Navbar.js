@@ -66,16 +66,7 @@ const Navbar = ({currentUser, isLoggedIn, history}) => {
             <Logout history={history}/>
         </div>
     )
-
-    const handleClick = (event) => {
-        event.preventDefault()
-        history.push(`/${event.target.name}`)
-    }
-
-    // const loggedOutNav = (
-    //     null
-    // )
-
+    
     const profile = () => {
         if (isLoggedIn) {
             return (
