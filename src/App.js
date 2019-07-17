@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Switch, Route, withRouter, Redirect} from 'react-router-dom';
+import {Route, withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
 
 import './App.css';
@@ -18,9 +18,7 @@ import {
 } from './actions/index';
 import MyDashboard from './containers/MyDashboard/MyDashboard'
 import MainContainer from './containers/MainContainer/MainContainer';
-import Login from './components/Login/Login';
 import Homepage from './components/Homepage/Homepage';
-import Signup from './components/Signup/Signup';
 
 class App extends Component {
   componentDidMount() {
@@ -57,4 +55,4 @@ const mapStateToProps = ({currentUser}) => {
   }
 }
 
-export default withRouter(connect(mapStateToProps, {getUsers, getProjects, getPositions, getCurrentUser, getUsers, getProjects, getTasks})(App));
+export default withRouter(connect(mapStateToProps, {getUsers, getProjects, getPositions, getCurrentUser, getTasks})(App));
