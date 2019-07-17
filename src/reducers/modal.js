@@ -4,6 +4,7 @@ const initialState = {
     showModal: false,
     showSignup: false,
     showLogin: false,
+    showDeleteUser: false,
 }
 
 export default (state=initialState, action) => {
@@ -23,10 +24,13 @@ export default (state=initialState, action) => {
                     ...state,
                     showLogin: !state.showLogin
             }
-            case actionTypes.RESET_MODAL:
+            case actionTypes.TOGGLE_DELETE_USER:
                 return {
-                    initialState,
-                }
+                    ...state,
+                    showDeleteUser: !state.showDeleteUser
+            }
+            case actionTypes.RESET_MODAL:
+                return initialState
         default:
             return state
     }

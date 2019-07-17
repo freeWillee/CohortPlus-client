@@ -18,6 +18,12 @@ export const toggleShowLogin = () => {
     }
 }
 
+export const toggleDeleteUser = () => {
+    return {
+        type: actionTypes.TOGGLE_DELETE_USER
+    }
+}
+
 export const resetModal = () => {
     return {
         type: actionTypes.RESET_MODAL,
