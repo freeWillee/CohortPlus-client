@@ -1,7 +1,6 @@
 import * as actionTypes from '../constants/index.js';
 import {getMyTasks} from './myTasks';
 import {getProjects} from './projects';
-import {getMyProjects} from './myProjects';
 
 export const getTasks = () => {
     return dispatch => {

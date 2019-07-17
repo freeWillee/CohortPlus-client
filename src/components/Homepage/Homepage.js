@@ -1,5 +1,4 @@
 import React from 'react';
-import {Route} from 'react-router-dom';
 
 import classes from './Homepage.module.css';
 import Modal from '../UI/Modal/Modal';

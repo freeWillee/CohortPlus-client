@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {NavLink, Route} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 
 import classes from './Navbar.module.css';
 import Logout from '../../Logout/Logout';
@@ -71,7 +71,7 @@ const Navbar = ({currentUser, isLoggedIn, history}) => {
         if (isLoggedIn) {
             return (
                 <div className={classes.ProfileSection}>
-                    <img src={currentUser.attributes.profile_url} />
+                    <img src={currentUser.attributes.profile_url} alt="Profile" />
                     <p className={classes.Username}>Welcome, {currentUser.attributes.first_name}</p>
                 </div>
             )

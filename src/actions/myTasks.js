@@ -1,5 +1,4 @@
 import * as actionTypes from '../constants/index';
-import {getMyProjects} from './myProjects';
 
 // SYNC ACTIONS
 export const setMyTasks = tasks => {
