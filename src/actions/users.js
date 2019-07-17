@@ -67,6 +67,12 @@ export const editUser = (formData, ownProps) => {
     }
 }
 
+export const deleteUser = (history) => {
+    return dispatch => {
+        
+    }
+}
+
 export const getPositions = () => {
     console.log('[IN getPositionsAction]')
     return dispatch => {
