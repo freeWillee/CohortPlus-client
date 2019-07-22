@@ -1,4 +1,5 @@
 import * as actionTypes from '../constants/index.js';
+import {getMyProjects} from './myProjects';
 
 export const getProjects = () => {
     return dispatch => {
@@ -42,9 +43,9 @@ export const createNewProject = (formData, ownProps) => {
     }
 }
 
-export const editProject = (formData, ownProps) => {
+export const editProject = (formData, ownProps, currentUserId) => {
     return dispatch => {
-        console.log('[editProjectAction]', 'formData: ', formData, 'ownProps: ', ownProps)
+        console.log('[editProjectAction]', 'formData: ', formData, 'ownProps: ', ownProps, 'currentUserId: ', currentUserId)
 
         fetch(
             `http://localhost:3001/api/v1/projects/${formData.id}`, {
@@ -58,6 +59,7 @@ export const editProject = (formData, ownProps) => {
             if(resp.ok) {
                 console.log(resp)
                 dispatch(getProjects())
+                dispatch(getMyProjects(currentUserId))
               } else {
                 throw Error(`Request rejected with the following message ${resp.status}`);
               }

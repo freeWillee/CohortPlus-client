@@ -23,6 +23,7 @@ import Modal from '../UI/Modal/Modal';
 import {styles} from '../hoc/material-ui/CardLayout';
 
 import {toggleModal, toggleDeleteProject, resetModal} from '../../actions/modal';
+import {getMyProjects} from '../../actions/myProjects';
 
 class ProjectCard extends Component {
     state = {
@@ -91,7 +92,6 @@ class ProjectCard extends Component {
             alert(`You did not edit any fields. To exit, click "Cancel"`)
         } else {
             const {editProject} = this.props
-            debugger
             editProject(this.state.editProject, this.props.currentUser.id)
             this.handleCloseEdit()
         }        

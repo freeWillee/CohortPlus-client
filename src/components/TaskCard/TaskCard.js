@@ -23,6 +23,7 @@ import {styles} from '../hoc/material-ui/CardLayout';
 import Modal from '../UI/Modal/Modal';
 import {toggleModal, toggleDeleteTask, resetModal} from '../../actions/modal';
 import {editTask} from '../../actions/tasks';
+import { getMyProjects } from '../../actions';
 
 class TaskCard extends Component  {
     state = {
@@ -96,6 +97,7 @@ class TaskCard extends Component  {
             const {editTask} = this.props
             console.log("EDITING THE TASK")
             editTask(this.state.editTask, this.props.currentUserId)
+            getMyProjects(this.props.currentUserId)
             this.handleCloseEdit()
         }        
     }

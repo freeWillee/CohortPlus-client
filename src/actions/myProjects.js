@@ -28,7 +28,7 @@ export const getMyProjects = (userId) => {
         })
         .then(resp => resp.json())
         .then(projects => {
-            console.log(projects.data)
+            console.log("getmy projects: ", projects.data)
             
             if (projects.error) {
                 alert(projects.error)

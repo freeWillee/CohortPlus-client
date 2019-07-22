@@ -23,6 +23,7 @@ export const getTasks = () => {
     }
 }
 
+
 export const createNewTask = (formData, ownProps) => {
     return dispatch => {
         fetch(
@@ -48,8 +49,7 @@ export const createNewTask = (formData, ownProps) => {
     }
 }
 
-export const editTask = (formData, ownProps, currentUserId) => {
-    debugger
+export const editTask = (formData, ownProps) => {
     return dispatch => {
         console.log('[editTaskAction]', 'formData: ', formData, 'ownProps: ', ownProps)
         fetch(
@@ -62,7 +62,7 @@ export const editTask = (formData, ownProps, currentUserId) => {
             })
         .then(resp => {
             if(resp.ok) {
-                dispatch(getMyTasks(currentUserId))
+                dispatch(getMyTasks())
               } else {
                 throw Error(`Request rejected with the following message ${resp.status}`);
               }
