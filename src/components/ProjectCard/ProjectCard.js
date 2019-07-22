@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
 import { withStyles } from '@material-ui/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -17,8 +18,11 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import CardHeader from '@material-ui/core/CardHeader';
+import Modal from '../UI/Modal/Modal';
 
 import {styles} from '../hoc/material-ui/CardLayout';
+
+import {toggleModal, toggleDeleteProject, resetModal} from '../../actions/modal';
 
 class ProjectCard extends Component {
     state = {
@@ -44,6 +48,13 @@ class ProjectCard extends Component {
         e.preventDefault()
         console.log("[ProjectCard.js - Clicked on Edit User Link")
         this.handleOpenEdit()
+    }
+
+    handleDeleteProjectLinkClick = (e) => {
+        e.preventDefault()
+        console.log("[PROJECTCard.js - YOU ARE DELETING THE PROJECT!")        
+        this.props.toggleModal();
+        this.props.toggleDeleteProject();
     }
 
     handleOpenEdit = () => {
@@ -85,11 +96,25 @@ class ProjectCard extends Component {
         }        
     }
 
+    
     render() {
         const {project, classes} = this.props
         const {title, description, deadline} = project.attributes
         const {users, tasks} = project.relationships
+        
+        let modalToShow = null;
+
+        if (this.props.showDeleteProject) {
+            return (
+                <Modal show={this.props.showModal} modalClosed={this.props.resetModal}>
+                    <h1>Going to delete the project form</h1>
+                </Modal>
+            )
+        }
+
         return (
+            <>
+            {modalToShow}
             <Card className={classes.card}>
                 <CardHeader
                     action={
@@ -112,6 +137,7 @@ class ProjectCard extends Component {
                     <Grow in={this.state.showBack}>
                         <CardContent>
                             <CardActionArea onClick={(e)=>this.handleEditProjectLinkClick(e)}><Typography gutterBottom variant="h6" component="h2">Edit Details</Typography></CardActionArea>
+                            <CardActionArea onClick={(e)=>this.handleDeleteProjectLinkClick(e)}><Typography gutterBottom variant="h6" component="h2">DELETE PROJECT</Typography></CardActionArea>
                         </CardContent>
                     </Grow>            
                 </div>
@@ -163,6 +189,7 @@ class ProjectCard extends Component {
                     </DialogActions>
                 </Dialog>
             </Card>
+            </>
         )
     }
 }
@@ -171,4 +198,11 @@ ProjectCard.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(ProjectCard);
+const mapStateToProps = state => {
+    return {
+        showModal: state.modal.showModal,
+        showDeleteProject: state.modal.showDeleteProject,
+    }
+}
+
+export default withStyles(styles)(connect(mapStateToProps, {toggleModal, toggleDeleteProject, resetModal})(ProjectCard));
