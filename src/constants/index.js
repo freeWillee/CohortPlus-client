@@ -25,6 +25,7 @@ export const SET_MY_TASKS = 'SET_MY_TASKS';
 export const RESET_MY_TASKS = 'RESET_MY_TASKS';
 export const GET_TASKS = 'GET_TASKS';
 export const SET_PROJECT_ID = 'SET_PROJECT_ID';
+export const RESET_FILTER = 'RESET_FILTER';
 
 // SESSION
 export const UPDATE_LOGIN_FORM = 'UPDATE_LOGIN_FORM';

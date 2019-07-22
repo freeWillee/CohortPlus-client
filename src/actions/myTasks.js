@@ -14,6 +14,11 @@ export const setFilter = projectId => {
         projectId
     }
 }
+export const resetFilter = () => {
+    return {
+        type: actionTypes.RESET_FILTER,
+    }
+}
 
 export const resetMyTasks = () => {
     

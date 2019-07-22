@@ -17,6 +17,11 @@ export default (state=initialState, action) => {
                 ...state,
                 filterProjectId: action.projectId
             }
+        case actionTypes.RESET_FILTER:
+            return {
+                ...state,
+                filterProjectId: ""
+            }
         case actionTypes.RESET_MY_TASKS:
             return initialState
         default:
