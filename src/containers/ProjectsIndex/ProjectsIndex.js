@@ -23,7 +23,7 @@ class ProjectsIndex extends Component {
                 return <ProjectCard 
                     key={project.id}
                     project={project} 
-                    editProject={(formData, ownProps) => this.props.editProject(formData, ownProps)}
+                    editProject={(formData, ownProps, currentUserId) => this.props.editProject(formData, ownProps, currentUserId)}
                 />
             })
         }
@@ -48,7 +48,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         getProjects: () => dispatch(actionCreators.getProjects()),
-        editProject: (formData) => dispatch(actionCreators.editProject(formData, ownProps)),
+        editProject: (formData, currentUserId) => dispatch(actionCreators.editProject(formData, ownProps, currentUserId)),
     }
 }
 

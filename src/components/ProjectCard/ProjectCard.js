@@ -91,7 +91,8 @@ class ProjectCard extends Component {
             alert(`You did not edit any fields. To exit, click "Cancel"`)
         } else {
             const {editProject} = this.props
-            editProject(this.state.editProject)
+            debugger
+            editProject(this.state.editProject, this.props.currentUser.id)
             this.handleCloseEdit()
         }        
     }
@@ -202,6 +203,7 @@ const mapStateToProps = state => {
     return {
         showModal: state.modal.showModal,
         showDeleteProject: state.modal.showDeleteProject,
+        currentUser: state.currentUser,
     }
 }
 

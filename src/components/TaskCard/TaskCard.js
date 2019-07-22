@@ -22,6 +22,7 @@ import CardHeader from '@material-ui/core/CardHeader';
 import {styles} from '../hoc/material-ui/CardLayout';
 import Modal from '../UI/Modal/Modal';
 import {toggleModal, toggleDeleteTask, resetModal} from '../../actions/modal';
+import {editTask} from '../../actions/tasks';
 
 class TaskCard extends Component  {
     state = {
@@ -29,7 +30,7 @@ class TaskCard extends Component  {
         showFront: true,
         isEditDialogueOpen: false,
         editTask: {
-            id: parseInt(this.props.task.attributes.user_id),
+            id: parseInt(this.props.task.id),
             title: "",
             content: "",
             status: "",
@@ -94,7 +95,7 @@ class TaskCard extends Component  {
         } else {
             const {editTask} = this.props
             console.log("EDITING THE TASK")
-            // editTask(this.state.editTask)
+            editTask(this.state.editTask, this.props.currentUserId)
             this.handleCloseEdit()
         }        
     }
@@ -128,8 +129,7 @@ class TaskCard extends Component  {
                 />
                 <div style={this.state.showFront ? null : {'display':'none'}}>
                     <Grow in={this.state.showFront}>
-                        <CardContent>
-                            <Typography gutterBottom variant="body1" component="p">{title}</Typography>
+                        <CardContent>                            
                             <Typography gutterBottom variant="body1" component="p">Content: {content}</Typography>
                             <Typography gutterBottom variant="body1" component="p">Status: {status}</Typography>
                         </CardContent>
@@ -200,7 +200,8 @@ const mapStateToProps = state => {
     return {
         showModal: state.modal.showModal,
         showDeleteTask: state.modal.showDeleteTask,
+        currentUserId: state.currentUser.id
     }
 }
 
-export default withStyles(styles)(connect(mapStateToProps, {toggleModal, toggleDeleteTask, resetModal})(TaskCard));
+export default withStyles(styles)(connect(mapStateToProps, {toggleModal, toggleDeleteTask, resetModal, editTask})(TaskCard));
