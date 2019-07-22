@@ -23,6 +23,16 @@ export const toggleDeleteUser = () => {
         type: actionTypes.TOGGLE_DELETE_USER
     }
 }
+export const toggleDeleteTask = () => {
+    return {
+        type: actionTypes.TOGGLE_DELETE_TASK
+    }
+}
+export const toggleDeleteProject = () => {
+    return {
+        type: actionTypes.TOGGLE_DELETE_PROJECT
+    }
+}
 
 export const resetModal = () => {
     return {

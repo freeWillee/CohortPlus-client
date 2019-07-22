@@ -5,6 +5,8 @@ const initialState = {
     showSignup: false,
     showLogin: false,
     showDeleteUser: false,
+    showDeleteTask: false,
+    showDeleteProject: false,
 }
 
 export default (state=initialState, action) => {
@@ -28,6 +30,16 @@ export default (state=initialState, action) => {
                 return {
                     ...state,
                     showDeleteUser: !state.showDeleteUser
+            }
+            case actionTypes.TOGGLE_DELETE_TASK:
+                return {
+                    ...state,
+                    showDeleteTask: !state.showDeleteTask
+            }
+            case actionTypes.TOGGLE_DELETE_PROJECT:
+                return {
+                    ...state,
+                    showDeleteProject: !state.showDeleteProject
             }
             case actionTypes.RESET_MODAL:
                 return initialState
