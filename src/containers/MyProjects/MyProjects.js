@@ -19,7 +19,7 @@ class MyProjects extends Component {
                         subheader={`Deadline: ${project.attributes.deadline}`}
                     />
                     <Typography variant="subtitle2" color="textSecondary" component="p">Team Members: {project.relationships.users.data.length}</Typography>
-                    <Typography variant="subtitle2" color="textSecondary" comjhdponent="p">Task Count: {project.relationships.tasks.data.length}</Typography>
+                    <Typography variant="subtitle2" color="textSecondary" component="p">Task Count: {project.relationships.tasks.data.length}</Typography>
                 </CardActionArea>
             </Card>
             )
