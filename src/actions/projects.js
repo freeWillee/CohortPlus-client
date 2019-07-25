@@ -76,3 +76,10 @@ export const deleteProject = (formData) => {
         formData,
     }
 }
+
+export const setDeleteProject = (projectId) => {
+    return {
+        type: actionTypes.SET_PROJECT_TO_DELETE,
+        projectId,
+    }
+}

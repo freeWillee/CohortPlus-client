@@ -23,7 +23,7 @@ import Modal from '../UI/Modal/Modal';
 import {styles} from '../hoc/material-ui/CardLayout';
 
 import {toggleModal, toggleDeleteProject, resetModal} from '../../actions/modal';
-import {getMyProjects} from '../../actions/myProjects';
+import {setDeleteProject} from '../../actions/projects';
 
 class ProjectCard extends Component {
     state = {
@@ -36,14 +36,13 @@ class ProjectCard extends Component {
             description: "",
             deadline: "",
         },
-        selectedProjectId: "",
+        projectToDelete: "",
     }
     handleCardClick = (e) => {
         e.preventDefault()
         this.setState({
             showBack: !this.state.showBack,
             showFront: !this.state.showFront,
-            selectedProjectId: parseInt(this.props.project.id),
         })
     }
 
@@ -55,7 +54,8 @@ class ProjectCard extends Component {
 
     handleDeleteProjectLinkClick = (e) => {
         e.preventDefault()
-        console.log("[PROJECTCard.js - YOU ARE DELETING THE PROJECT!")        
+        console.log("[PROJECTCard.js - YOU ARE DELETING THE PROJECT!")                
+        this.props.setDeleteProject(this.props.project.id)
         this.props.toggleModal();
         this.props.toggleDeleteProject();
     }
@@ -77,7 +77,6 @@ class ProjectCard extends Component {
             },
             showBack: !this.state.showBack,
             showFront: !this.state.showFront,
-            selectedProjectId: "",
         })
     }
 
@@ -96,14 +95,24 @@ class ProjectCard extends Component {
         } else {
             const {editProject} = this.props
             editProject(this.state.editProject, this.props.currentUser.id)
-            this.handleCloseEdit()
+            this.setState({
+                showBack: false,
+                showFront: true,
+            })
         }        
     }
 
-    handleCloseDelete = () => {
+    handleDeleteProject = () => {
+        this.props.deleteProject(this.props.projectToDelete);
+        this.props.setDeleteProject("")
         this.props.toggleModal();
         this.props.toggleDeleteProject();
-        this.setState({selectedProjectId: "",})
+    }
+
+    handleCloseDelete = () => {
+        this.props.setDeleteProject("")
+        this.props.toggleModal();
+        this.props.toggleDeleteProject();
     }
 
     
@@ -118,7 +127,7 @@ class ProjectCard extends Component {
             return (
                 <Modal show={this.props.showModal} modalClosed={this.props.resetModal}>
                     <h3>Are you sure you want to delete the project?</h3>
-                    <Button onClick={()=>this.props.deleteProject(this.state.selectedProjectId)}>Yes</Button>
+                    <Button onClick={this.handleDeleteProject}>Yes</Button>
                     <Button onClick={this.handleCloseDelete}>No</Button>
                 </Modal>
             )
@@ -130,7 +139,7 @@ class ProjectCard extends Component {
             <Card className={classes.card}>
                 <CardHeader
                     action={
-                    <IconButton aria-label="Settings" onClick={(e) => this.handleCardClick(e)} project_id={project.id}>
+                    <IconButton aria-label="Settings" onClick={(e) => this.handleCardClick(e)} >
                         <MoreVertIcon />
                     </IconButton>
                     }
@@ -215,7 +224,9 @@ const mapStateToProps = state => {
         showModal: state.modal.showModal,
         showDeleteProject: state.modal.showDeleteProject,
         currentUser: state.currentUser,
+        selectedProject: state.selectedProjectId,
+        projectToDelete: state.projects.deleteProjectId,
     }
 }
 
-export default withStyles(styles)(connect(mapStateToProps, {toggleModal, toggleDeleteProject, resetModal})(ProjectCard));
+export default withStyles(styles)(connect(mapStateToProps, {toggleModal, toggleDeleteProject, resetModal, setDeleteProject})(ProjectCard));

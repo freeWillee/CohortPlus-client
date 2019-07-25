@@ -10,6 +10,7 @@ export {
     createNewProject,
     editProject,
     deleteProject,
+    setDeleteProject,
 } from './projects'
 
 export {
