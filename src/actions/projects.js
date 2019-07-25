@@ -69,3 +69,10 @@ export const editProject = (formData, ownProps, currentUserId) => {
         })
     }
 }
+
+export const deleteProject = (formData) => {
+    return {
+        type: actionTypes.DELETE_PROJECT,
+        formData,
+    }
+}

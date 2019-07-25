@@ -36,12 +36,14 @@ class ProjectCard extends Component {
             description: "",
             deadline: "",
         },
+        selectedProjectId: "",
     }
     handleCardClick = (e) => {
         e.preventDefault()
         this.setState({
             showBack: !this.state.showBack,
-            showFront: !this.state.showFront
+            showFront: !this.state.showFront,
+            selectedProjectId: parseInt(this.props.project.id),
         })
     }
 
@@ -74,7 +76,8 @@ class ProjectCard extends Component {
                 deadline: "",
             },
             showBack: !this.state.showBack,
-            showFront: !this.state.showFront
+            showFront: !this.state.showFront,
+            selectedProjectId: "",
         })
     }
 
@@ -97,6 +100,12 @@ class ProjectCard extends Component {
         }        
     }
 
+    handleCloseDelete = () => {
+        this.props.toggleModal();
+        this.props.toggleDeleteProject();
+        this.setState({selectedProjectId: "",})
+    }
+
     
     render() {
         const {project, classes} = this.props
@@ -108,7 +117,9 @@ class ProjectCard extends Component {
         if (this.props.showDeleteProject) {
             return (
                 <Modal show={this.props.showModal} modalClosed={this.props.resetModal}>
-                    <h1>Going to delete the project form</h1>
+                    <h3>Are you sure you want to delete the project?</h3>
+                    <Button onClick={()=>this.props.deleteProject(this.state.selectedProjectId)}>Yes</Button>
+                    <Button onClick={this.handleCloseDelete}>No</Button>
                 </Modal>
             )
         }

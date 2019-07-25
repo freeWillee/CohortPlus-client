@@ -24,6 +24,7 @@ class ProjectsIndex extends Component {
                     key={project.id}
                     project={project} 
                     editProject={(formData, ownProps, currentUserId) => this.props.editProject(formData, ownProps, currentUserId)}
+                    deleteProject={this.props.deleteProject}
                 />
             })
         }
@@ -49,6 +50,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         getProjects: () => dispatch(actionCreators.getProjects()),
         editProject: (formData, currentUserId) => dispatch(actionCreators.editProject(formData, ownProps, currentUserId)),
+        deleteProject: (formData) => dispatch(actionCreators.deleteProject(formData))
     }
 }
 

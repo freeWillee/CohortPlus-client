@@ -11,6 +11,11 @@ export default (state=initialState, action) => {
                 ...state,
                 listing: action.projects,        
             }
+        case actionTypes.DELETE_PROJECT:
+            console.log('IN DELETE PROJECT REDUCER - HERE IS THE FORMDATA: ', action.formData)
+            return {
+                ...state,
+            }
         default:
             return state
     }
