@@ -36,6 +36,7 @@ export const createNewTask = (formData, ownProps) => {
             })
         .then(resp => {
             if(resp.ok) {
+                // I WANT TO DISPATCH GET MY PROJECTS BUT HOW DO I PASS IN THE CURRENT USER'S ID TO THE DISPATCH ACTION?? CAN I CONNECT AN ACTION??
                 dispatch(getMyTasks())
                 dispatch(getProjects())
                 ownProps.history.push('/my-dashboard');
