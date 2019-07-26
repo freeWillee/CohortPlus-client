@@ -126,7 +126,7 @@ class ProjectCard extends Component {
         if (this.props.showDeleteProject) {
             return (
                 <Modal show={this.props.showModal} modalClosed={this.props.resetModal}>
-                    <h3>Are you sure you want to delete the project?</h3>
+                    <h3>All tasks associated with this project will be deleted.  Are you sure you want to delete the project?</h3>
                     <Button onClick={this.handleDeleteProject}>Yes</Button>
                     <Button onClick={this.handleCloseDelete}>No</Button>
                 </Modal>
