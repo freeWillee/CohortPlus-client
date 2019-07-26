@@ -74,10 +74,11 @@ class ProjectCard extends Component {
                 title: "",
                 description: "",
                 deadline: "",
-            },
+            },            
             showBack: !this.state.showBack,
             showFront: !this.state.showFront,
         })
+        this.props.resetModal();
     }
 
     handleFormInputChange = event => {
@@ -99,20 +100,23 @@ class ProjectCard extends Component {
                 showBack: false,
                 showFront: true,
             })
+            this.props.resetModal();
         }        
     }
 
     handleDeleteProject = () => {
         this.props.deleteProject(this.props.projectToDelete);
         this.props.setDeleteProject("")
-        this.props.toggleModal();
-        this.props.toggleDeleteProject();
+        this.props.resetModal();
+        // this.props.toggleModal();
+        // this.props.toggleDeleteProject();
     }
 
     handleCloseDelete = () => {
         this.props.setDeleteProject("")
-        this.props.toggleModal();
-        this.props.toggleDeleteProject();
+        // this.props.toggleModal();
+        // this.props.toggleDeleteProject();
+        this.props.resetModal();
     }
 
     

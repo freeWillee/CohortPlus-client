@@ -23,7 +23,7 @@ class ProjectsIndex extends Component {
                 return <ProjectCard 
                     key={project.id}
                     project={project} 
-                    editProject={(formData, ownProps, currentUserId) => this.props.editProject(formData, ownProps, currentUserId)}
+                    editProject={this.props.editProject}
                     deleteProject={this.props.deleteProject}
                 />
             })
