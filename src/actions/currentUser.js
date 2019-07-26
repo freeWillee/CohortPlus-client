@@ -69,7 +69,6 @@ export const logout = (history) => {
                 dispatch(resetMyTasks())
                 dispatch(clearMyProjects())
                 history.push('/')
-                // alert(response.message)
             }
         })
     }
