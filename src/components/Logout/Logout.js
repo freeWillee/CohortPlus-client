@@ -6,6 +6,7 @@ import classes from './Logout.module.css';
 const Logout = ({logout, history}) => {            
     const handleSubmit = event => {
         event.preventDefault()
+        history.push('/')
         logout(history)
     }
 
