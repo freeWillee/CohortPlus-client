@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Route, withRouter} from 'react-router-dom';
+import {Route, withRouter, Switch} from 'react-router-dom';
 import {connect} from 'react-redux';
 
 import './App.css';
@@ -30,21 +30,30 @@ class App extends Component {
   }
 
   render() {
-    return (
+    if (this.props.isLoggedIn) {
+      return (
       <div>
         <Route render={({history})=><Navbar history={history}/>}/>
-        
         <MainContainer>
-          <Route exact path="/my-dashboard" component={MyDashboard}/>
-          <Route exact path="/" render={({history})=><Homepage history={history}/>}/>
-          <Route exact path="/users" component={UsersIndex}/>
-          <Route exact path="/users/new" component={NewUserPage}/>
-          <Route exact path="/tasks/new" component={NewTaskPage}/>
-          <Route exact path="/projects/new" component={NewProjectPage}/>
-          <Route exact path="/projects" component={ProjectsIndex}/>
+          <Switch>
+            <Route exact path="/my-dashboard" component={MyDashboard}/>
+            <Route exact path="/users" component={UsersIndex}/>
+            <Route exact path="/users/new" component={NewUserPage}/>
+            <Route exact path="/tasks/new" component={NewTaskPage}/>
+            <Route exact path="/projects/new" component={NewProjectPage}/>
+            <Route exact path="/projects" component={ProjectsIndex}/>
+            <Route path="/" render={({history}) => this.props.isLoggedIn ? <MyDashboard /> : <Homepage history={history}/>}/>
+          </Switch>
         </MainContainer>
       </div>
-    );
+      )
+    } else {      
+      return (
+        <MainContainer>
+          <Route path="/" render={({history}) => <Homepage history={history}/>}/>
+        </MainContainer>
+      )
+    }
   }
 }
 
