@@ -50,7 +50,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         getProjects: () => dispatch(actionCreators.getProjects()),
         editProject: (formData, currentUserId) => dispatch(actionCreators.editProject(formData, ownProps, currentUserId)),
-        deleteProject: (formData) => dispatch(actionCreators.deleteProject(formData, ownProps))
+        deleteProject: (formData, currentUserId) => dispatch(actionCreators.deleteProject(formData, ownProps, currentUserId))
     }
 }
 

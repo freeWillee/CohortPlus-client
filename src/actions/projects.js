@@ -1,5 +1,6 @@
 import * as actionTypes from '../constants/index.js';
 import {getMyProjects} from './myProjects';
+import {getMyTasks} from './myTasks';
 
 export const getProjects = () => {
     return dispatch => {
@@ -70,7 +71,7 @@ export const editProject = (formData, ownProps, currentUserId) => {
     }
 }
 
-export const deleteProject = (formData, ownProps) => {
+export const deleteProject = (formData, ownProps, currentUserId) => {
     return dispatch => {
         console.log('[deleteProjectAction]', 'formData: ', formData)
 
@@ -86,6 +87,8 @@ export const deleteProject = (formData, ownProps) => {
             if(resp.ok) {
                 console.log(resp)
                 dispatch(getProjects())
+                dispatch(getMyTasks())
+                dispatch(getMyProjects(currentUserId))
                 ownProps.history.push('/my-dashboard')
               } else {
                 throw Error(`Request rejected with the following message ${resp.status}`);

@@ -105,11 +105,9 @@ class ProjectCard extends Component {
     }
 
     handleDeleteProject = () => {
-        this.props.deleteProject(this.props.projectToDelete);
+        this.props.deleteProject(this.props.projectToDelete, this.props.currentUser.id);
         this.props.setDeleteProject("")
         this.props.resetModal();
-        // this.props.toggleModal();
-        // this.props.toggleDeleteProject();
     }
 
     handleCloseDelete = () => {
