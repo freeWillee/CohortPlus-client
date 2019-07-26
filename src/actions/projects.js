@@ -70,10 +70,30 @@ export const editProject = (formData, ownProps, currentUserId) => {
     }
 }
 
-export const deleteProject = (formData) => {
-    return {
-        type: actionTypes.DELETE_PROJECT,
-        formData,
+export const deleteProject = (formData, ownProps) => {
+    return dispatch => {
+        console.log('[deleteProjectAction]', 'formData: ', formData)
+
+        fetch(
+            `http://localhost:3001/api/v1/projects/${parseInt(formData)}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json'
+                },                
+                body: JSON.stringify(formData)
+            })
+        .then(resp => {
+            if(resp.ok) {
+                console.log(resp)
+                dispatch(getProjects())
+                ownProps.history.push('/my-dashboard')
+              } else {
+                throw Error(`Request rejected with the following message ${resp.status}`);
+              }
+        })
+        .catch(err => {
+            console.log('[DELETE_PROJECT_ERROR]: ', err)
+        })
     }
 }
 
