@@ -8,7 +8,7 @@ class NewTaskPage extends Component {
     render() {
         return (
             <NewTaskForm
-                createTask={(formData, ownProps) => this.props.addNewTask(formData, ownProps)}
+                createTask={this.props.addNewTask}
                 users={this.props.users}
                 projects={this.props.projects}
             />
@@ -18,7 +18,7 @@ class NewTaskPage extends Component {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
-        addNewTask: (formData) => dispatch(actionCreators.createNewTask(formData, ownProps)),
+        addNewTask: (formData, currentUserId) => dispatch(actionCreators.createNewTask(formData, ownProps, currentUserId)),
         getProjects: () => dispatch(actionCreators.getProjects()),
         getUsers: () => dispatch(actionCreators.getUsers())
     }

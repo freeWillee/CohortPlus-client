@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import TextField from '@material-ui/core/TextField';
 import classes from './NewTaskCard.module.css';
+import {connect} from 'react-redux';
 
 // @material-ui library
 import MenuItem from '@material-ui/core/MenuItem';
@@ -42,7 +43,7 @@ class NewTask extends Component {
         } else {
             console.log('[SUCCESS - CREATING TASK...]', this.state)
             const {createTask} = this.props
-            createTask(this.state)
+            createTask(this.state, this.props.currentUserId)
         }
     }
 
@@ -169,4 +170,10 @@ class NewTask extends Component {
     }
 }
 
-export default NewTask;
+const mapStateToProps = state => {
+    return {
+        currentUserId: state.currentUser.id,
+    }
+}
+
+export default connect(mapStateToProps)(NewTask);
