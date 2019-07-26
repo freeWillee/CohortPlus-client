@@ -23,13 +23,18 @@ export const DELETE_PROJECT = 'DELETE_PROJECT';
 export const SET_PROJECT_TO_DELETE = 'SET_PROJECT_TO_DELETE';
 
 
+
 // TASKS
 export const ADD_NEW_TASK = 'ADD_NEW_TASK';
 export const SET_MY_TASKS = 'SET_MY_TASKS';
 export const RESET_MY_TASKS = 'RESET_MY_TASKS';
 export const GET_TASKS = 'GET_TASKS';
-export const SET_PROJECT_ID = 'SET_PROJECT_ID';
+export const SET_TASK_ID = 'SET_TASK_ID';
 export const RESET_FILTER = 'RESET_FILTER';
+export const DELETE_TASK = 'DELETE_TASK';
+export const SET_PROJECT_ID = 'SET_PROJECT_ID';
+export const SET_TASK_TO_DELETE = 'SET_TASK_TO_DELETE';
+export const RESET_TASK_TO_DELETE = 'RESET_TASK_TO_DELETE';
 
 // SESSION
 export const UPDATE_LOGIN_FORM = 'UPDATE_LOGIN_FORM';

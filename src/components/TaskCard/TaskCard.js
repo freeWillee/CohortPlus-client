@@ -22,7 +22,7 @@ import CardHeader from '@material-ui/core/CardHeader';
 import {styles} from '../hoc/material-ui/CardLayout';
 import Modal from '../UI/Modal/Modal';
 import {toggleModal, toggleDeleteTask, resetModal} from '../../actions/modal';
-import {editTask} from '../../actions/tasks';
+import {editTask, deleteTask, setTaskToDelete, resetTaskToDelete} from '../../actions/tasks';
 import { getMyProjects } from '../../actions';
 
 class TaskCard extends Component  {
@@ -56,6 +56,7 @@ class TaskCard extends Component  {
     handleDeleteTaskLinkClick = (e) => {
         e.preventDefault()
         console.log("[TASKCard.js - YOU ARE DELETING THE TASK!")        
+        this.props.setTaskToDelete(this.props.task.id)
         this.props.toggleModal();
         this.props.toggleDeleteTask();
     }
@@ -102,6 +103,25 @@ class TaskCard extends Component  {
         }        
     }
 
+    handleDeleteTask = () => {
+        this.props.deleteTask(this.props.taskToDelete, this.props.currentUserId);
+        this.props.resetTaskToDelete()
+        this.props.resetModal();
+        this.setState({            
+            showBack: !this.state.showBack,
+            showFront: !this.state.showFront
+        })
+    }
+    
+    handleCloseDelete = () => {
+        this.props.resetTaskToDelete()
+        this.props.resetModal();
+        this.setState({            
+            showBack: !this.state.showBack,
+            showFront: !this.state.showFront
+        })
+    }
+
     render() {
         const {title, content, status, due_date} = this.props.task.attributes
         let modalToShow = null;
@@ -111,7 +131,9 @@ class TaskCard extends Component  {
         if (this.props.showDeleteTask) {
             return (
                 <Modal show={this.props.showModal} modalClosed={this.props.resetModal}>
-                    <h1>Going to delete the task Form</h1>
+                    <h3>This task will be deleted.  Are you sure you want to continue?</h3>
+                    <Button onClick={this.handleDeleteTask}>Yes</Button>
+                    <Button onClick={this.handleCloseDelete}>No</Button>
                 </Modal>
             )
         }
@@ -202,8 +224,9 @@ const mapStateToProps = state => {
     return {
         showModal: state.modal.showModal,
         showDeleteTask: state.modal.showDeleteTask,
-        currentUserId: state.currentUser.id
+        currentUserId: state.currentUser.id,
+        taskToDelete: state.tasks.deleteTaskId,
     }
 }
 
-export default withStyles(styles)(connect(mapStateToProps, {toggleModal, toggleDeleteTask, resetModal, editTask})(TaskCard));
+export default withStyles(styles)(connect(mapStateToProps, {toggleModal, toggleDeleteTask, resetModal, editTask, setTaskToDelete, deleteTask, resetTaskToDelete})(TaskCard));

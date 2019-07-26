@@ -1,7 +1,20 @@
 import * as actionTypes from '../constants/index.js';
 import {getMyTasks} from './myTasks';
 import {getProjects} from './projects';
+import {getMyProjects} from './myProjects';
 
+
+export const setTaskToDelete = (taskId) => {
+    return {
+        type: actionTypes.SET_TASK_TO_DELETE,
+        taskId
+    }
+}
+export const resetTaskToDelete = () => {
+    return {
+        type: actionTypes.RESET_TASK_TO_DELETE,
+    }
+}
 
 // ASYNC ACTIONS
 
@@ -24,7 +37,7 @@ export const getTasks = () => {
 }
 
 
-export const createNewTask = (formData, ownProps) => {
+export const createNewTask = (formData, ownProps, currentUserId) => {
     return dispatch => {
         fetch(
             'http://localhost:3001/api/v1/tasks', {
@@ -36,9 +49,9 @@ export const createNewTask = (formData, ownProps) => {
             })
         .then(resp => {
             if(resp.ok) {
-                // I WANT TO DISPATCH GET MY PROJECTS BUT HOW DO I PASS IN THE CURRENT USER'S ID TO THE DISPATCH ACTION?? CAN I CONNECT AN ACTION??
                 dispatch(getMyTasks())
                 dispatch(getProjects())
+                dispatch(getMyProjects(currentUserId))
                 ownProps.history.push('/my-dashboard');
               } else {
                 throw Error(`Request rejected with the following message ${resp.status}`);
@@ -70,6 +83,34 @@ export const editTask = (formData, ownProps) => {
         })
         .catch(err => {
             console.log('[CREATE_USER_ERROR]: ', err)
+        })
+    }
+}
+
+export const deleteTask = (formData, currentUserId) => {
+    return dispatch => {
+        console.log('[deleteTaskAction]', 'formData: ', formData)
+
+        fetch(
+            `http://localhost:3001/api/v1/tasks/${parseInt(formData)}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json'
+                },                
+                body: JSON.stringify(formData)
+            })
+        .then(resp => {
+            if(resp.ok) {
+                console.log(resp)
+                dispatch(getTasks())
+                dispatch(getMyTasks(currentUserId))
+                dispatch(getMyProjects(currentUserId))
+              } else {
+                throw Error(`Request rejected with the following message ${resp.status}`);
+              }
+        })
+        .catch(err => {
+            console.log('[DELETE_USER_ERROR]: ', err)
         })
     }
 }

@@ -17,6 +17,7 @@ export {
 export {
     createNewTask,
     getTasks,
+    deleteTask,
 } from './tasks'
 
 export {
