@@ -76,7 +76,8 @@ class UsersIndex extends Component {
                         key={user.id} 
                         user={user}
                         position={userPosition}
-                        editUser={(formData, ownProps) => this.props.editUser(formData, ownProps)}
+                        editUser={this.props.editUser}
+                        deleteUser={this.props.deleteUser}
                     /> 
             })
         }   
@@ -102,6 +103,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         editUser: (formData) => dispatch(actionCreators.editUser(formData, ownProps)),
+        deleteUser: (formData) => dispatch(actionCreators.deleteUser(formData, ownProps))
     }
 }
 

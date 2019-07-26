@@ -3,6 +3,7 @@ export {
     createNewUser,
     editUser,
     getPositions,
+    deleteUser,
 } from './users'
 
 export {

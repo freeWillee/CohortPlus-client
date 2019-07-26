@@ -5,6 +5,8 @@ export const GET_USERS = 'GET_USERS';
 export const FETCHING_USERS = 'FETCHING_USERS';
 export const ADD_NEW_USER = 'ADD_NEW_USER';
 export const LOGOUT_USER = 'LOGOUT_USER';
+export const SET_USER_TO_DELETE = 'SET_USER_TO_DELETE';
+export const RESET_USER_TO_DELETE = 'RESET_USER_TO_DELETE';
 
 // POSITIONS
 export const GET_POSITIONS = 'GET_POSITIONS';

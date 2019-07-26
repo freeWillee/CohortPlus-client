@@ -67,9 +67,30 @@ export const editUser = (formData, ownProps) => {
     }
 }
 
-export const deleteUser = (history) => {
+export const deleteUser = (formData, ownProps) => {
     return dispatch => {
-        
+        console.log('[deleteUserAction]', 'formData: ', formData)
+
+        fetch(
+            `http://localhost:3001/api/v1/users/${parseInt(formData)}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json'
+                },                
+                body: JSON.stringify(formData)
+            })
+        .then(resp => {
+            if(resp.ok) {
+                console.log(resp)
+                dispatch(getUsers())
+                ownProps.history.push('/users')
+              } else {
+                throw Error(`Request rejected with the following message ${resp.status}`);
+              }
+        })
+        .catch(err => {
+            console.log('[DELETE_USER_ERROR]: ', err)
+        })
     }
 }
 
@@ -90,5 +111,18 @@ export const getPositions = () => {
             .catch(err => {
                 console.log('[FETCH_POSITIONS_ERROR]: ', err)
             })
+    }
+}
+
+export const setDeleteUser = (userId) => {
+    return {
+        type: actionTypes.SET_USER_TO_DELETE,
+        userId,
+    }
+}
+
+export const resetDeleteUser = () => {
+    return {
+        type: actionTypes.RESET_USER_TO_DELETE,
     }
 }

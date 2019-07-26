@@ -21,6 +21,7 @@ import {getUnique} from '../../helpers/getUnique';
 import Modal from '../UI/Modal/Modal';
 import Aux from '../hoc/Aux/Aux';
 import {toggleModal, toggleDeleteUser,resetModal} from '../../actions/modal';
+import {setDeleteUser, resetDeleteUser} from '../../actions/users';
 
 
 class UserCard extends Component {
@@ -53,7 +54,8 @@ class UserCard extends Component {
 
     handleDeleteUserLinkClick = (e) => {
         e.preventDefault()
-        console.log("[UserCard.js - YOU ARE DELETING THE USER!")        
+        console.log("[UserCard.js - YOU ARE DELETING THE USER!")
+        this.props.setDeleteUser(this.props.user.id)     
         this.props.toggleModal();
         this.props.toggleDeleteUser();
     }
@@ -99,8 +101,23 @@ class UserCard extends Component {
         }        
     }
 
-    resetModal = () => {
-        this.props.resetModal()
+    handleDeleteUser = () => {
+        this.props.deleteUser(this.props.userToDelete);
+        this.props.setDeleteUser("")
+        this.props.resetModal();
+        this.setState({            
+            showBack: !this.state.showBack,
+            showFront: !this.state.showFront
+        })
+    }
+    
+    handleCloseDelete = () => {
+        this.props.resetDeleteUser()
+        this.props.resetModal();
+        this.setState({            
+            showBack: !this.state.showBack,
+            showFront: !this.state.showFront
+        })
     }
 
     render() {
@@ -113,10 +130,12 @@ class UserCard extends Component {
         if (this.props.showDeleteUser) {
             return (
                 <Modal show={this.props.showModal} modalClosed={this.props.resetModal}>
-                    <h1>Going to delete the user Form</h1>
+                    <h3>All tasks associated with this user will be deleted.  Are you sure you want to delete the user?</h3>
+                    <Button onClick={this.handleDeleteUser}>Yes</Button>
+                    <Button onClick={this.handleCloseDelete}>No</Button>
                 </Modal>
             )
-        }
+        } else {
         
         return (
             <Aux>            
@@ -222,6 +241,7 @@ class UserCard extends Component {
             </Aux>
         )
     }
+    }
 }
 
 UserCard.propTypes = {
@@ -232,7 +252,8 @@ const mapStateToProps = state => {
     return {
         showModal: state.modal.showModal,
         showDeleteUser: state.modal.showDeleteUser,        
+        userToDelete: state.users.deleteUserId,
     }
 }
 
-export default withStyles(styles)(connect(mapStateToProps, {toggleModal, toggleDeleteUser, resetModal})(UserCard));
+export default withStyles(styles)(connect(mapStateToProps, {toggleModal, toggleDeleteUser, resetModal, setDeleteUser, resetDeleteUser})(UserCard));
